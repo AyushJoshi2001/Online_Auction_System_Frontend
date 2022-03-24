@@ -1,0 +1,12 @@
+.main {
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  background-color: white;
+}
+
+.logPara {
+  font-size: 2.5rem;
+}

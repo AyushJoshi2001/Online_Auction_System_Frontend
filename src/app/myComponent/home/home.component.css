@@ -1,0 +1,10 @@
+.main {
+  background: rgb(226, 223, 223);
+  min-height: 100vh;
+}
+
+.productList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
