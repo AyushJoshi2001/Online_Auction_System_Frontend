@@ -1,13 +1,13 @@
 export interface User{
 
-  uid: number,
+  uid: number | null,
   name: string,
   email: string,
-  password: null,
+  password: string | null,
   profile_pic: string,
   mobile: string,
   address: string,
   userType: string,
-  isAdmin: 0|1;
+  isAdmin: 0|1|null;
 
 }

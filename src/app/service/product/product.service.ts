@@ -16,4 +16,9 @@ export class ProductService {
     const url = this.base_url+"/product";
     return this.http.get<Product[]>(url);
   }
+
+  getByTitle(query: string): Observable<Product[]> {
+    const url = this.base_url+"/product/getByTitle/"+query;
+    return this.http.get<Product[]>(url);
+  }
 }

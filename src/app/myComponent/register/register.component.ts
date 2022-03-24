@@ -20,6 +20,9 @@ export class RegisterComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
+    if(localStorage.getItem("user")){
+      this.router.navigateByUrl("/app/home");
+    }
   }
 
   onSubmit(){

@@ -1,9 +1,21 @@
 <div class="main container p-3">
+  <form (ngSubmit)="searchQuery()">
+    <input
+      class="search"
+      type="text"
+      placeholder="Search..."
+      name="search"
+      id="search"
+      [(ngModel)]="search"
+      value="search"
+    />
+    <button class="btn btn-success" type="submit">Search</button>
+  </form>
   <div *ngIf="avail; else elseBlock">
     <div class="productList" *ngFor="let product of products">
       <app-product [product]="product"></app-product>
     </div>
   </div>
-  <ng-template #elseBlock>No Product Found</ng-template>
+  <ng-template #elseBlock><p class="notfound">No Product Found</p></ng-template>
 </div>
 <!-- <app-footer></app-footer> -->

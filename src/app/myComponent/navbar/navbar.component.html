@@ -31,7 +31,14 @@
       </ul>
     </div>
   </div>
-  <div>
-    <a class="btn btn-primary" routerLink="/auth/login">Login</a>
+  <div *ngIf="userLoggedIn; else elseBlock">
+    <a class="btn btn-primary" routerLink="/auth/login" (click)="logout()"
+      >Logout</a
+    >
   </div>
+  <ng-template #elseBlock>
+    <div>
+      <a class="btn btn-primary" routerLink="/auth/login">Login</a>
+    </div>
+  </ng-template>
 </nav>

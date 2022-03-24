@@ -10,6 +10,7 @@ import { ProductService } from 'src/app/service/product/product.service';
 export class HomeComponent implements OnInit {
   products: Product[] = [];
   avail: boolean = false;
+  search: string = "";
   constructor(private productService: ProductService) {
     // this.showAllProducts;
   }
@@ -28,6 +29,25 @@ export class HomeComponent implements OnInit {
 
   onClick = () => {
 
+  }
+
+  searchQuery(): void {
+    this.search = this.search;
+    this.productService.getByTitle(this.search).subscribe(
+      {
+        next: (data: Product[]) => {
+          this.products = data;
+        },
+        complete: () => {
+          if(this.products.length==0){
+            this.avail = false;
+          }
+          else {
+            this.avail = true;
+          }
+        }
+      }
+    )
   }
 
   showAllProducts(): void {

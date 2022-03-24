@@ -1,0 +1,47 @@
+.main {
+  width: 100%;
+  background-color: white;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.main:hover {
+  cursor: pointer;
+  background-color: rgb(235, 231, 231);
+}
+
+.box {
+  display: flex;
+  padding: 5px;
+  width: 100%;
+}
+
+.imgBox {
+  align-items: center;
+  flex-shrink: 0;
+  margin-right: 30px;
+}
+
+img {
+  width: 100%;
+  height: 5rem;
+  flex-shrink: 0;
+  flex-grow: 0;
+  flex: 1;
+  align-items: stretch;
+  border-radius: 5px;
+}
+
+.content {
+  flex: 1;
+  line-height: 0.5;
+}
+
+span {
+  color: grey;
+  font-size: small;
+}
+
+.headText {
+  font-size: 14px;
+}
