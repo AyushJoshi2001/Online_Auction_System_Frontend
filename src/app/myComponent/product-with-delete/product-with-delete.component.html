@@ -1,0 +1,26 @@
+<div class="mb-3 main">
+  <div class="inside_main">
+    <div class="box">
+      <div class="imgBox">
+        <img src="../../../assets/img/dummy-product.png" alt="..." />
+      </div>
+      <div class="content">
+        <p class="headText">
+          Title : <span>{{ product.title }}</span>
+        </p>
+        <p class="headText">
+          Description : <span>{{ product.description }}</span>
+        </p>
+        <p class="headText">
+          Bidding Status : <span>{{ product.bid_status }}</span>
+        </p>
+        <p class="headText">
+          Sold Status : <span>{{ product.sold_status }}</span>
+        </p>
+      </div>
+    </div>
+    <div class="btnDiv">
+      <button class="btn btn-danger" (click)="deleteProduct()">Delete</button>
+    </div>
+  </div>
+</div>

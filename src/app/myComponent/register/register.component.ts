@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {UserData} from "../../models/UserData";
 import {AuthService} from "../../service/AuthService/auth.service";
 import { Router } from "@angular/router";
+import { UserData } from 'src/app/models/Basic';
 
 @Component({
   selector: 'app-register',
@@ -17,6 +17,9 @@ export class RegisterComponent implements OnInit {
     address: "",
     userType: "Buyer"
   };
+
+  errorOccured: boolean = false;
+
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
@@ -36,9 +39,18 @@ export class RegisterComponent implements OnInit {
     }
 
     this.authService.registerUser(this.userData).subscribe({
+      next: () => {
+        this.errorOccured = false;
+      },
+      error: (err) => {
+        if(err.status == 400){
+          this.errorOccured = true;
+          console.log("error 400 occoured");
+        }
+      },
       complete: () => {
         console.log("user successfully registered...");
-        this.router.navigateByUrl("/app/home");
+        this.router.navigateByUrl("/auth/login");
       }
     })
   }

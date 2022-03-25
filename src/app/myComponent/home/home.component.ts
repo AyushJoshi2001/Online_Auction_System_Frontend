@@ -12,7 +12,6 @@ export class HomeComponent implements OnInit {
   avail: boolean = false;
   search: string = "";
   constructor(private productService: ProductService) {
-    // this.showAllProducts;
   }
 
   ngOnInit(): void {
@@ -48,8 +47,5 @@ export class HomeComponent implements OnInit {
         }
       }
     )
-  }
-
-  showAllProducts(): void {
   }
 }

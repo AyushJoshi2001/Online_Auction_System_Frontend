@@ -22,7 +22,7 @@ export class NavbarComponent implements OnInit {
     else{
       this.userLoggedIn = true;
       this.userObject = JSON.parse(this.user);
-      console.log(this.userObject);
+      // console.log(this.userObject);
     }
   }
 

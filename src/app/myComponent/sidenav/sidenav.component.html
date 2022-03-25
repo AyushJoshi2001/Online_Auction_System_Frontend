@@ -1,5 +1,15 @@
-<div class="main">
-  <p><a>Add Products</a></p>
-  <p><a>Edit Products</a></p>
-  <p><a>Delete Products</a></p>
+<div class="main" *ngIf="userLoggedIn">
+  <p>
+    <a routerLink="/app/addProduct" class="btn btn-outline-primary"
+      >Add Products</a
+    >
+  </p>
+  <p>
+    <a routerLink="#" class="btn btn-outline-primary">Edit Products</a>
+  </p>
+  <p>
+    <a routerLink="/app/deleteProduct" class="btn btn-outline-primary"
+      >Delete Products</a
+    >
+  </p>
 </div>

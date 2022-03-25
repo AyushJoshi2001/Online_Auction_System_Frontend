@@ -5,7 +5,9 @@
     Already have an account?
     <a routerLink="/auth/login" style="color: rgb(31, 132, 226)">Log In</a>
   </p>
-
+  <div *ngIf="errorOccured">
+    <p class="alert alert-danger">Email and Password are mandatory fields!</p>
+  </div>
   <form (ngSubmit)="onSubmit()">
     <div class="mb-3">
       <label for="name" class="form-label">Name</label>
@@ -18,7 +20,7 @@
       />
     </div>
     <div class="mb-3">
-      <label for="email" class="form-label">Email address</label>
+      <label for="email" class="form-label">Email*</label>
       <input
         type="email"
         class="form-control"
@@ -28,7 +30,7 @@
       />
     </div>
     <div class="mb-3">
-      <label for="password" class="form-label">Password</label>
+      <label for="password" class="form-label">Password*</label>
       <input
         type="password"
         class="form-control"

@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AboutComponent } from './myComponent/about/about.component';
+import { AddProductComponent } from './myComponent/add-product/add-product.component';
 import { AppContainerComponent } from './myComponent/app-container/app-container.component';
 import { AuthContainerComponent } from './myComponent/auth-container/auth-container.component';
+import { DeleteProductComponent } from './myComponent/delete-product/delete-product.component';
 import { HomeComponent } from './myComponent/home/home.component';
 import { LoginComponent } from './myComponent/login/login.component';
 import { PageNotFoundComponent } from './myComponent/page-not-found/page-not-found.component';
@@ -22,6 +24,8 @@ const routes: Routes = [
       {path:"", component:HomeComponent},
       {path:"home", component:HomeComponent},
       {path:"about", component:AboutComponent},
+      {path:"addProduct", component:AddProductComponent},
+      {path:"deleteProduct", component:DeleteProductComponent},
     ]
   },
   {path: "**", component: PageNotFoundComponent},

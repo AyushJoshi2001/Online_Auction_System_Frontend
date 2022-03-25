@@ -1,0 +1,32 @@
+.main {
+  background: rgb(165, 163, 163);
+  min-height: 100vh;
+}
+
+.productList {
+  display: flex;
+  flex-direction: column;
+}
+
+.search {
+  width: 400px;
+  padding: 5px 15px 5px 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  margin-right: 10px;
+  outline: none;
+}
+
+form {
+  text-align: center;
+}
+
+.prodHead {
+  color: Black;
+  font-size: 40px;
+}
+
+.notfound {
+  color: red;
+  font-size: 20px;
+}

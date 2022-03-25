@@ -1,3 +1,10 @@
+export interface ProductAddDetails{
+  title: string;
+  product_pic?: string;
+  description?: string;
+  uid?: number;
+}
+
 export interface UserData {
   name: string;
   email: string;
@@ -6,3 +13,4 @@ export interface UserData {
   address: string;
   userType: string;
 }
+

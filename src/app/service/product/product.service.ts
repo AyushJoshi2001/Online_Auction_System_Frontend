@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
+import { ProductAddDetails } from 'src/app/models/Basic';
 import { Product } from 'src/app/models/product';
 
 @Injectable({
@@ -21,4 +22,21 @@ export class ProductService {
     const url = this.base_url+"/product/getByTitle/"+query;
     return this.http.get<Product[]>(url);
   }
+
+  addProduct(data: ProductAddDetails){
+    const url = this.base_url+"/addProduct";
+    return this.http.post(url, data);
+  }
+
+  getByTitleAndId(query: string, uid: number): Observable<Product[]> {
+    const url = this.base_url+"/product/getByTitleAndUid/"+query+"/"+uid;
+    // console.log(url);
+    return this.http.get<Product[]>(url);
+  }
+
+  deleteProduct(pid: number, uid: number): Observable<Product>{
+    const url = this.base_url+"/deleteProduct";
+    return this.http.delete<Product>(url, {body:{pid: pid, uid: uid}});
+  }
+
 }

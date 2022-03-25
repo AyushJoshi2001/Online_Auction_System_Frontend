@@ -1,1 +1,31 @@
-<p>add-product works!</p>
+<div class="main container py-5 rounded-3 my-3">
+  <p class="text-center display-5">Add Product</p>
+  <div *ngIf="!fillDetails">
+    <p class="alert alert-danger">Fill All the details.</p>
+  </div>
+  <form (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="title" class="form-label">Title</label>
+      <input
+        type="text"
+        class="form-control"
+        id="title"
+        name="title"
+        placeholder="Enter Title Here"
+        [(ngModel)]="productAddDetails.title"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <textarea
+        type="email"
+        class="form-control"
+        id="description"
+        name="description"
+        placeholder="Enter Description Here"
+        [(ngModel)]="productAddDetails.description"
+      ></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary addBtn">Click to Add</button>
+  </form>
+</div>
