@@ -1,0 +1,65 @@
+<div class="main container py-5 rounded-3 my-3">
+  <p class="text-center display-5">Edit Product Details</p>
+  <div class="notfound" *ngIf="!product; else productFound">
+    Product Not Found
+  </div>
+  <ng-template #productFound>
+    <div *ngIf="!fillDetails">
+      <p class="alert alert-danger">Fill All the details.</p>
+    </div>
+
+    <form (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          name="title"
+          placeholder="Enter Title Here"
+          [(ngModel)]="product.title"
+          [value]="product.title"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea
+          type="email"
+          class="form-control"
+          id="description"
+          name="description"
+          placeholder="Enter Description Here"
+          [(ngModel)]="product.description"
+          [value]="product.description"
+        ></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="product_pic" class="form-label">Produt Photo URL</label>
+        <input
+          type="text"
+          class="form-control"
+          id="product_pic"
+          name="product_pic"
+          placeholder="Enter Title Here"
+          [(ngModel)]="product.product_pic"
+          [value]="product.product_pic"
+        />
+      </div>
+      <!-- <div class="mb-3">
+        <label for="bid_status" class="form-label">Bidding Status</label>
+        <div>
+          <select
+            id="bid_status"
+            class="p-2"
+            name="bid_status"
+            [(ngModel)]="product.bid_status"
+          >
+            <option value="Open">Open</option>
+            <option value="Close">Close</option>
+          </select>
+        </div>
+      </div> -->
+      <button type="submit" class="btn btn-primary addBtn">Save</button>
+    </form>
+  </ng-template>
+</div>

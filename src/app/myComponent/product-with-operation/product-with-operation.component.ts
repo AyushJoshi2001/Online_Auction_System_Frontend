@@ -5,11 +5,11 @@ import { User } from 'src/app/models/User';
 import { ProductService } from 'src/app/service/product/product.service';
 
 @Component({
-  selector: 'app-product-with-delete',
-  templateUrl: './product-with-delete.component.html',
-  styleUrls: ['./product-with-delete.component.css']
+  selector: 'app-product-with-operation',
+  templateUrl: './product-with-operation.component.html',
+  styleUrls: ['./product-with-operation.component.css']
 })
-export class ProductWithDeleteComponent implements OnInit {
+export class ProductWithOperationComponent implements OnInit {
   @Input()
   product!: Product;
   user: string | null = null;
@@ -20,12 +20,16 @@ export class ProductWithDeleteComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  editProduct(){
+    this.router.navigateByUrl("/app/editProduct/"+this.product.pid);
+  }
+
   deleteProduct(){
     this.user  = localStorage.getItem("user");
     if(this.user){
       this.loggedInUser = JSON.parse(this.user);
       if(this.loggedInUser && this.loggedInUser.uid){
-        this.productService.deleteProduct(this.product.pid, this.loggedInUser.uid).subscribe(
+        this.productService.deleteProduct(this.product.pid!, this.loggedInUser.uid).subscribe(
           {
             next: (data) => {
               // console.log(data);

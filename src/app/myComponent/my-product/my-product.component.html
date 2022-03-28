@@ -14,7 +14,9 @@
   <p class="prodHead">My Products :</p>
   <div *ngIf="avail; else elseBlock">
     <div class="productList" *ngFor="let product of products">
-      <app-product-with-delete [product]="product"></app-product-with-delete>
+      <app-product-with-operation
+        [product]="product"
+      ></app-product-with-operation>
     </div>
   </div>
   <ng-template #elseBlock><p class="notfound">No Product Found</p></ng-template>

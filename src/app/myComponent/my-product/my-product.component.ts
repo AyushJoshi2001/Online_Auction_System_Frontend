@@ -5,11 +5,11 @@ import { User } from 'src/app/models/User';
 import { ProductService } from 'src/app/service/product/product.service';
 
 @Component({
-  selector: 'app-delete-product',
-  templateUrl: './delete-product.component.html',
-  styleUrls: ['./delete-product.component.css']
+  selector: 'app-my-product',
+  templateUrl: './my-product.component.html',
+  styleUrls: ['./my-product.component.css']
 })
-export class DeleteProductComponent implements OnInit {
+export class MyProductComponent implements OnInit {
   products: Product[] = [];
   avail: boolean = false;
   search: string = "";
@@ -29,6 +29,7 @@ export class DeleteProductComponent implements OnInit {
       this.searchQuery();
     }
   }
+
 
   searchQuery(): void {
     this.search = this.search;
@@ -51,4 +52,5 @@ export class DeleteProductComponent implements OnInit {
       )
     }
   }
+
 }

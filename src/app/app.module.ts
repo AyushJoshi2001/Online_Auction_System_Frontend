@@ -19,8 +19,10 @@ import { AuthContainerComponent } from './myComponent/auth-container/auth-contai
 import { SidenavComponent } from './myComponent/sidenav/sidenav.component';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from './service/AuthService/auth.service';
-import { DeleteProductComponent } from './myComponent/delete-product/delete-product.component';
-import { ProductWithDeleteComponent } from './myComponent/product-with-delete/product-with-delete.component';
+import { EditProductComponent } from './myComponent/edit-product/edit-product.component';
+import { MyProductComponent } from './myComponent/my-product/my-product.component';
+import { ProductWithOperationComponent } from './myComponent/product-with-operation/product-with-operation.component';
+import { ProfileComponent } from './myComponent/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -38,8 +40,10 @@ import { ProductWithDeleteComponent } from './myComponent/product-with-delete/pr
     PageNotFoundComponent,
     AuthContainerComponent,
     SidenavComponent,
-    DeleteProductComponent,
-    ProductWithDeleteComponent
+    EditProductComponent,
+    MyProductComponent,
+    ProductWithOperationComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

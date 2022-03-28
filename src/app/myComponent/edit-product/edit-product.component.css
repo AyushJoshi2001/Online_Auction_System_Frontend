@@ -1,0 +1,14 @@
+.main {
+  padding-left: 70px;
+  padding-right: 70px;
+}
+
+textarea {
+  min-height: 125px;
+}
+
+.notfound {
+  text-align: center;
+  color: red;
+  font-size: 25px;
+}

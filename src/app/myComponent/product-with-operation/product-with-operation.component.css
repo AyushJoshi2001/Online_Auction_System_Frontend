@@ -5,13 +5,13 @@
   padding: 5px;
 }
 
+.inside_main {
+  display: flex;
+}
+
 .main:hover {
   cursor: pointer;
   background-color: rgb(235, 231, 231);
-}
-
-.inside_main {
-  display: flex;
 }
 
 .box {
@@ -53,6 +53,5 @@ span {
 .btnDiv {
   display: flex;
   align-items: center;
-  justify-items: center;
-  margin-right: 20px;
+  margin-right: 10px;
 }

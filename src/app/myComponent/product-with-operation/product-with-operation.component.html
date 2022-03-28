@@ -6,6 +6,9 @@
       </div>
       <div class="content">
         <p class="headText">
+          Product Id : <span>{{ product.pid }}</span>
+        </p>
+        <p class="headText">
           Title : <span>{{ product.title }}</span>
         </p>
         <p class="headText">
@@ -14,10 +17,10 @@
         <p class="headText">
           Bidding Status : <span>{{ product.bid_status }}</span>
         </p>
-        <p class="headText">
-          Sold Status : <span>{{ product.sold_status }}</span>
-        </p>
       </div>
+    </div>
+    <div class="btnDiv">
+      <button class="btn btn-danger" (click)="editProduct()">Edit</button>
     </div>
     <div class="btnDiv">
       <button class="btn btn-danger" (click)="deleteProduct()">Delete</button>

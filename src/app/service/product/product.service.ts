@@ -18,6 +18,11 @@ export class ProductService {
     return this.http.get<Product[]>(url);
   }
 
+  getProductById(pid: string): Observable<Product> {
+    const url = this.base_url+"/product/"+pid;
+    return this.http.get<Product>(url);
+  }
+
   getByTitle(query: string): Observable<Product[]> {
     const url = this.base_url+"/product/getByTitle/"+query;
     return this.http.get<Product[]>(url);
@@ -37,6 +42,11 @@ export class ProductService {
   deleteProduct(pid: number, uid: number): Observable<Product>{
     const url = this.base_url+"/deleteProduct";
     return this.http.delete<Product>(url, {body:{pid: pid, uid: uid}});
+  }
+
+  editProduct(data: Product){
+    const url = this.base_url+"/updateProduct/"+data.pid;
+    return this.http.put(url, data);
   }
 
 }
