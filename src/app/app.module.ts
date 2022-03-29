@@ -24,6 +24,7 @@ import { MyProductComponent } from './myComponent/my-product/my-product.componen
 import { ProductWithOperationComponent } from './myComponent/product-with-operation/product-with-operation.component';
 import { ProfileComponent } from './myComponent/profile/profile.component';
 import { ProductDetailsComponent } from './myComponent/product-details/product-details.component';
+import { BidOnProductComponent } from './myComponent/bid-on-product/bid-on-product.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { ProductDetailsComponent } from './myComponent/product-details/product-d
     MyProductComponent,
     ProductWithOperationComponent,
     ProfileComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    BidOnProductComponent
   ],
   imports: [
     BrowserModule,

@@ -49,4 +49,9 @@ export class ProductService {
     return this.http.put(url, data);
   }
 
+  bidOnProduct(pid: string, uid: number, amount: number){
+    const url = this.base_url+"/bid/"+pid;
+    return this.http.post(url, {uid: uid, amount: amount});
+  }
+
 }

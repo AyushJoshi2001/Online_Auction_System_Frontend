@@ -1,0 +1,25 @@
+<div class="inner_main">
+  <p class="text-center fs-1 fw-bold">Bid On Product</p>
+  <p class="alert alert-danger" *ngIf="lessThanBase">Increase The Amount</p>
+  <form class="mb-3" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="bid" class="form-label">Amount: </label>
+      <input
+        type="number"
+        class="form-control"
+        id="bid"
+        name="bid"
+        placeholder="Enter Amount"
+        [(ngModel)]="amount"
+        [value]="product.base_price"
+      />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Click To Bid</button>
+  </form>
+  <!-- <p class="text-center display-6">Top Bids</p>
+
+  <div>
+    <p></p>
+  </div> -->
+</div>

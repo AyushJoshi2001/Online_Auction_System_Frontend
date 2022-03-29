@@ -1,0 +1,40 @@
+.topLevel {
+  display: flex;
+  flex-flow: wrap;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  /* width: 100%; */
+  padding-right: 50px;
+}
+
+.inner_main {
+  display: flex;
+  min-width: 500px;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.product_pic {
+  width: 150px;
+  height: 150px;
+  border-radius: 100%;
+}
+
+.pic_box {
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.name_pic {
+  display: flex;
+}
