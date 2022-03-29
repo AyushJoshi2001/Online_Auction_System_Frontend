@@ -16,6 +16,17 @@
       />
     </div>
     <div class="mb-3">
+      <label for="product_pic" class="form-label">Product Picture URL</label>
+      <input
+        type="text"
+        class="form-control"
+        id="product_pic"
+        name="product_pic"
+        placeholder="Enter Product Picture URL Here"
+        [(ngModel)]="productAddDetails.product_pic"
+      />
+    </div>
+    <div class="mb-3">
       <label for="description" class="form-label">Description</label>
       <textarea
         type="email"
@@ -25,6 +36,17 @@
         placeholder="Enter Description Here"
         [(ngModel)]="productAddDetails.description"
       ></textarea>
+    </div>
+    <div class="mb-3">
+      <label for="base_price" class="form-label">Base Price</label>
+      <input
+        type="text"
+        class="form-control"
+        id="base_price"
+        name="base_price"
+        placeholder="Enter Base Price Here"
+        [(ngModel)]="productAddDetails.base_price"
+      />
     </div>
     <button type="submit" class="btn btn-primary addBtn">Click to Add</button>
   </form>

@@ -9,6 +9,7 @@ import { HomeComponent } from './myComponent/home/home.component';
 import { LoginComponent } from './myComponent/login/login.component';
 import { MyProductComponent } from './myComponent/my-product/my-product.component';
 import { PageNotFoundComponent } from './myComponent/page-not-found/page-not-found.component';
+import { ProductDetailsComponent } from './myComponent/product-details/product-details.component';
 import { ProfileComponent } from './myComponent/profile/profile.component';
 import { RegisterComponent } from './myComponent/register/register.component';
 
@@ -30,6 +31,7 @@ const routes: Routes = [
       {path:"myProduct", component:MyProductComponent},
       {path:"editProduct/:pid", component:EditProductComponent},
       {path:"profile", component:ProfileComponent},
+      {path:"product/:pid", component:ProductDetailsComponent},
     ]
   },
   {path: "**", component: PageNotFoundComponent},

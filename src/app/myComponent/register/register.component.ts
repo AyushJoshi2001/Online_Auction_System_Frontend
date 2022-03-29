@@ -15,7 +15,7 @@ export class RegisterComponent implements OnInit {
     password: "",
     mobile: "",
     address: "",
-    userType: "Buyer"
+    about: "",
   };
 
   errorOccured: boolean = false;
@@ -35,7 +35,7 @@ export class RegisterComponent implements OnInit {
       password: this.userData?.password,
       mobile: this.userData?.mobile,
       address: this.userData?.address,
-      userType: this.userData?.userType
+      about: this.userData?.about
     }
 
     this.authService.registerUser(this.userData).subscribe({

@@ -23,6 +23,7 @@ import { EditProductComponent } from './myComponent/edit-product/edit-product.co
 import { MyProductComponent } from './myComponent/my-product/my-product.component';
 import { ProductWithOperationComponent } from './myComponent/product-with-operation/product-with-operation.component';
 import { ProfileComponent } from './myComponent/profile/profile.component';
+import { ProductDetailsComponent } from './myComponent/product-details/product-details.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { ProfileComponent } from './myComponent/profile/profile.component';
     EditProductComponent,
     MyProductComponent,
     ProductWithOperationComponent,
-    ProfileComponent
+    ProfileComponent,
+    ProductDetailsComponent
   ],
   imports: [
     BrowserModule,

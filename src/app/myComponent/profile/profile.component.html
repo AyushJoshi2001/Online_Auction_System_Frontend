@@ -1,1 +1,119 @@
-<p>profile works!</p>
+<div class="main">
+  <p class="text-center fs-1 fw-bold">Profile</p>
+  <div class="inner_main">
+    <div class="name_pic">
+      <div class="pic_box" *ngIf="!user.profile_pic; else changeProfilePic">
+        <img
+          class="profile_pic"
+          src="../../../assets/img/dummy_user.png"
+          alt="..."
+        />
+      </div>
+      <ng-template #changeProfilePic>
+        <div class="pic_box">
+          <img class="profile_pic" [src]="user.profile_pic" alt="..." />
+        </div>
+      </ng-template>
+      <div class="d-flex align-items-center ps-2">
+        <p class="fs-2" *ngIf="!edit; else changeName">{{ user!.name }}</p>
+        <ng-template #changeName>
+          <div class="d-flex flex-column">
+            <input
+              type="text"
+              name="name"
+              [(ngModel)]="user!.name"
+              [value]="user!.name"
+              class="inputArea mb-3"
+              placeholder="Name..."
+            />
+            <input
+              type="text"
+              name="profile_pic"
+              [(ngModel)]="user!.profile_pic"
+              [value]="user!.profile_pic"
+              class="inputArea"
+              placeholder="Profile Picture URL..."
+            />
+          </div>
+        </ng-template>
+      </div>
+    </div>
+    <hr />
+    <div class="mt-3">
+      <label for="email">Email:</label>
+      <p class="fst-italic text-center">
+        {{ user!.email }}
+      </p>
+    </div>
+    <hr />
+    <div class="mt-3">
+      <label for="mobile">Mobile:</label>
+      <p class="fst-italic text-center" *ngIf="!edit; else changeMobile">
+        {{ user!.mobile }}
+      </p>
+      <ng-template #changeMobile>
+        <div>
+          <input
+            type="text"
+            [(ngModel)]="user!.mobile"
+            name="mobile"
+            [value]="user!.mobile"
+            class="inputArea"
+            placeholder="Mobile..."
+          />
+        </div>
+      </ng-template>
+    </div>
+    <hr />
+    <div class="mt-3">
+      <label for="address">Address:</label>
+      <p class="fst-italic text-center" *ngIf="!edit; else changeAddress">
+        {{ user!.address }}
+      </p>
+      <ng-template #changeAddress>
+        <div>
+          <input
+            type="text"
+            [(ngModel)]="user!.address"
+            name="address"
+            [value]="user!.address"
+            class="inputArea"
+            placeholder="Address..."
+          />
+        </div>
+      </ng-template>
+    </div>
+    <hr />
+    <div class="mt-3">
+      <label for="about">About:</label>
+      <p class="fst-italic text-center" *ngIf="!edit; else changeAbout">
+        {{ user!.about }}
+      </p>
+      <ng-template #changeAbout>
+        <div>
+          <textarea
+            type="text"
+            [(ngModel)]="user!.about"
+            name="about"
+            [value]="user!.about"
+            class="inputArea"
+            placeholder="About..."
+          ></textarea>
+        </div>
+      </ng-template>
+    </div>
+    <hr />
+    <button
+      class="btn btn-primary"
+      (click)="editClick()"
+      *ngIf="!edit; else changeBtn"
+    >
+      Edit
+    </button>
+    <ng-template #changeBtn
+      ><button class="btn btn-success" (click)="saveClick()">
+        Save
+      </button></ng-template
+    >
+  </div>
+</div>

@@ -1,12 +1,15 @@
 <div class="mb-3 main">
   <div class="box">
-    <div class="imgBox">
-      <img src="../../../assets/img/dummy-product.png" alt="..." />
+    <div class="imgBox" *ngIf="product.product_pic; else changeProductPic">
+      <img [src]="product.product_pic" alt="..." />
     </div>
+    <ng-template #changeProductPic>
+      <div class="imgBox">
+        <img src="../../../assets/img/dummy-product.png" alt="..." />
+      </div>
+    </ng-template>
+
     <div class="content">
-      <p class="headText">
-        Product Id : <span>{{ product.pid }}</span>
-      </p>
       <p class="headText">
         Title : <span>{{ product.title }}</span>
       </p>
@@ -15,6 +18,9 @@
       </p>
       <p class="headText">
         Bidding Status : <span>{{ product.bid_status }}</span>
+      </p>
+      <p class="headText">
+        Base Price : <span>{{ product.base_price }}</span>
       </p>
     </div>
   </div>

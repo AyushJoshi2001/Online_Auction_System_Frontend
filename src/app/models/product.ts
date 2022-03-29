@@ -8,4 +8,5 @@ export interface Product{
   uid?: number;
   sold_status?: string;
   sold_to?: number;
+  base_price?: number;
 }

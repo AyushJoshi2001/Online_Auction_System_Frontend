@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
     profile_pic: "",
     mobile: "",
     address: "",
-    userType: "",
+    about: "",
     isAdmin: null
   };
   constructor(private authService: AuthService, private router: Router) { }

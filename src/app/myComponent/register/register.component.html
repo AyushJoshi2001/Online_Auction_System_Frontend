@@ -59,18 +59,14 @@
         [(ngModel)]="userData.address"
       />
     </div>
-    <div class="mb-3 option">
-      <label for="userType" class="form-label pb-1">User Type</label>
-      <select
-        id="userType"
-        class="p-1"
-        name="userType"
-        [(ngModel)]="userData.userType"
-      >
-        <option value="Select">Select</option>
-        <option value="Buyer">Buyer</option>
-        <option value="Seller">Seller</option>
-      </select>
+    <div class="mb-3">
+      <label for="about" class="pb-2">About</label>
+      <textarea
+        class="form-control"
+        id="about"
+        name="about"
+        [(ngModel)]="userData.about"
+      ></textarea>
     </div>
     <div class="mb-3 form-check">
       <input type="checkbox" class="form-check-input" id="exampleCheck1" />

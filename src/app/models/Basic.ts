@@ -3,6 +3,7 @@ export interface ProductAddDetails{
   product_pic?: string;
   description?: string;
   uid?: number;
+  base_price?: number;
 }
 
 export interface UserData {
@@ -11,6 +12,6 @@ export interface UserData {
   password: string;
   mobile: string;
   address: string;
-  userType: string;
+  about: string;
 }
 
