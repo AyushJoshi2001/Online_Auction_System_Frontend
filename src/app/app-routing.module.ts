@@ -7,6 +7,7 @@ import { AuthContainerComponent } from './myComponent/auth-container/auth-contai
 import { EditProductComponent } from './myComponent/edit-product/edit-product.component';
 import { HomeComponent } from './myComponent/home/home.component';
 import { LoginComponent } from './myComponent/login/login.component';
+import { MyBidsComponent } from './myComponent/my-bids/my-bids.component';
 import { MyProductComponent } from './myComponent/my-product/my-product.component';
 import { PageNotFoundComponent } from './myComponent/page-not-found/page-not-found.component';
 import { ProductDetailsComponent } from './myComponent/product-details/product-details.component';
@@ -32,6 +33,7 @@ const routes: Routes = [
       {path:"editProduct/:pid", component:EditProductComponent},
       {path:"profile", component:ProfileComponent},
       {path:"product/:pid", component:ProductDetailsComponent},
+      {path:"myBid", component:MyBidsComponent},
     ]
   },
   {path: "**", component: PageNotFoundComponent},

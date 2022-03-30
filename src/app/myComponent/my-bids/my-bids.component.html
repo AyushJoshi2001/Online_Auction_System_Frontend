@@ -1,21 +1,22 @@
 <div class="main my-5">
-  <p class="text-center fs-1 fw-bold">Top Bids</p>
+  <p class="text-center fs-1 fw-bold">My Bids</p>
   <div class="inner_main">
     <ul class="d-flex justify-content-evenly">
       <th>User Id</th>
       <th>Product Id</th>
-      <th class="ps-4">Amount</th>
+      <th class="text-center">Product Name</th>
+      <th class="text-center">Amount</th>
     </ul>
     <div *ngFor="let bid of bids">
       <div class="d-flex justify-content-evenly">
         <p class="dpara text-center fst-italic">{{ bid.uid }}</p>
         <p class="dpara text-center fst-italic">{{ bid.pid }}</p>
+        <p class="dpara text-center fst-italic">{{ bid.product_name }}</p>
         <p class="dpara text-center fst-italic pl-5">
           {{ bid.amount | currency: "INR" }}
         </p>
       </div>
     </div>
-    <button class="btn btn-primary" (click)="refreshBid()">Refresh</button>
   </div>
   <hr />
 </div>

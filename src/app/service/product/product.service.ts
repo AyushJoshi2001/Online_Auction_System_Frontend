@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { ProductAddDetails } from 'src/app/models/Basic';
+import { Bids } from 'src/app/models/Bids';
 import { Product } from 'src/app/models/product';
 
 @Injectable({
@@ -49,9 +50,24 @@ export class ProductService {
     return this.http.put(url, data);
   }
 
-  bidOnProduct(pid: string, uid: number, amount: number){
+  bidOnProduct(pid: string, uid: number, amount: number, product_name: string){
     const url = this.base_url+"/bid/"+pid;
-    return this.http.post(url, {uid: uid, amount: amount});
+    return this.http.post(url, {uid: uid, amount: amount, product_name: product_name});
+  }
+
+  fetchAllBidsByPid(pid: string): Observable<Bids[]>{
+    const url = this.base_url+"/getBid/"+pid;
+    return this.http.get<Bids[]>(url);
+  }
+
+  fetchAllBidsByUid(uid: number): Observable<Bids[]>{
+    const url = this.base_url+"/getBidByUid/"+uid;
+    return this.http.get<Bids[]>(url);
+  }
+
+  closeBid(pid: string, uid: number){
+    const url = this.base_url+"/product/productBidStatus/"+pid;
+    return this.http.put(url, {uid: uid, bid_status: "Close", sold_status: "Sold"});
   }
 
 }

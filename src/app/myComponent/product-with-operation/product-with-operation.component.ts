@@ -14,10 +14,17 @@ export class ProductWithOperationComponent implements OnInit {
   product!: Product;
   user: string | null = null;
   loggedInUser: User | null = null;
+  bidClosed: boolean = false;
 
   constructor(private productService: ProductService, private router: Router) { }
 
   ngOnInit(): void {
+    if(this.product.bid_status==="Close"){
+      this.bidClosed = true;
+    }
+    else{
+      this.bidClosed = false;
+    }
   }
 
   editProduct(){
@@ -44,4 +51,23 @@ export class ProductWithOperationComponent implements OnInit {
     }
   }
 
+  closeBid(){
+    this.user  = localStorage.getItem("user");
+    if(this.user){
+      this.loggedInUser = JSON.parse(this.user);
+      if(this.loggedInUser && this.loggedInUser.uid){
+        this.productService.closeBid(""+this.product.pid!, this.loggedInUser.uid).subscribe(
+          {
+            next: (data) => {
+              console.log(data);
+            },
+            error: (err) => console.log(err),
+            complete: () => {
+              this.router.navigateByUrl("/app/home");
+            }
+          }
+        )
+      }
+    }
+  }
 }

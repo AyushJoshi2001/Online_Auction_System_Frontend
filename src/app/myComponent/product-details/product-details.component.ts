@@ -14,16 +14,25 @@ export class ProductDetailsComponent implements OnInit {
     title: "",
   };
 
+  loggedInUser: User | null = null;
+
+  productId: string = "";
+
   lessThanBase: boolean = false;
   bidSuccess: boolean = false;
   ownerOfProduct: boolean = false;
+  sold: boolean = false;
   amount: number = 0;
   constructor(private productService: ProductService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    let productId = this.activatedRoute.snapshot.paramMap.get("pid");
-    if(productId!=null){
-      this.productService.getProductById(productId).subscribe((
+    this.productId = this.activatedRoute.snapshot.paramMap.get("pid") || "";
+    let user = localStorage.getItem("user");
+    if(user!=null){
+      this.loggedInUser = JSON.parse(user);
+    }
+    if(this.productId!=null){
+      this.productService.getProductById(this.productId).subscribe((
         {
           next: (data) => {
             this.product = data;
@@ -32,14 +41,18 @@ export class ProductDetailsComponent implements OnInit {
             console.log(err);
           },
           complete: () => {
-            let user = localStorage.getItem("user");
-            if(user!=null){
-              let userObj: User = JSON.parse(user);
 
-              if(this.product.uid==userObj.uid){
+
+              if(this.product.uid==this.loggedInUser!.uid){
                 this.ownerOfProduct = true;
               }
               // console.log(this.ownerOfProduct);
+
+            if(this.product.sold_status=="Sold"){
+              this.sold = true;
+            }
+            else{
+              this.sold = false;
             }
           }
         }
@@ -52,7 +65,7 @@ export class ProductDetailsComponent implements OnInit {
   onSubmit(){
     if(this.amount >= this.product.base_price!){
       this.lessThanBase = false;
-      this.productService.bidOnProduct(""+this.product.pid, this.product.uid!, this.amount).subscribe(
+      this.productService.bidOnProduct(""+this.product.pid, this.loggedInUser!.uid!, this.amount, this.product.title).subscribe(
         {
           error: (err) => {
             this.bidSuccess = false;

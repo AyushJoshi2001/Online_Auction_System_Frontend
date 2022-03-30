@@ -24,11 +24,17 @@
         </p>
       </div>
     </div>
-    <div class="btnDiv">
+    <div class="btnDiv" *ngIf="!bidClosed">
       <button class="btn btn-danger" (click)="editProduct()">Edit</button>
     </div>
-    <div class="btnDiv">
+    <div class="btnDiv" *ngIf="!bidClosed">
+      <button class="btn btn-danger" (click)="closeBid()">Close Bid</button>
+    </div>
+    <div class="btnDiv" *ngIf="!bidClosed">
       <button class="btn btn-danger" (click)="deleteProduct()">Delete</button>
+    </div>
+    <div class="btnDiv" *ngIf="bidClosed">
+      <p class="btn btn-success">Sold</p>
     </div>
   </div>
 </div>

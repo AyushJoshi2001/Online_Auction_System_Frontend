@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Bids } from 'src/app/models/Bids';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/service/product/product.service';
 
@@ -9,32 +10,28 @@ import { ProductService } from 'src/app/service/product/product.service';
 })
 export class BidOnProductComponent implements OnInit {
   @Input()
-  product!: Product;
-  amount: number = 0;
-
-  lessThanBase: boolean = false;
+  productId!: string;
+  bids: Bids[] = [];
 
   constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
+    // console.log(this.productId);
+    this.refreshBid();
   }
-
-  onSubmit(){
-    if(this.amount>=this.product.base_price!){
-      this.lessThanBase = false;
-      this.productService.bidOnProduct(""+this.product.pid, this.product.uid!, this.amount).subscribe(
-        {
-          error: (err) => {
-            console.log(err);
-          },
-          complete: () => {
-            console.log("bid successfull");
-          }
+  refreshBid(){
+    this.productService.fetchAllBidsByPid(this.productId).subscribe((
+      {
+        next: (data) => {
+          this.bids = data;
+        },
+        error: (err) => {
+          console.log(err);
+        },
+        complete: () => {
+          // console.log(this.bids);
         }
-      );
-    }
-    else{
-      this.lessThanBase = true;
-    }
+      }
+    ));
   }
 }

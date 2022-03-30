@@ -25,6 +25,7 @@ import { ProductWithOperationComponent } from './myComponent/product-with-operat
 import { ProfileComponent } from './myComponent/profile/profile.component';
 import { ProductDetailsComponent } from './myComponent/product-details/product-details.component';
 import { BidOnProductComponent } from './myComponent/bid-on-product/bid-on-product.component';
+import { MyBidsComponent } from './myComponent/my-bids/my-bids.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { BidOnProductComponent } from './myComponent/bid-on-product/bid-on-produ
     ProductWithOperationComponent,
     ProfileComponent,
     ProductDetailsComponent,
-    BidOnProductComponent
+    BidOnProductComponent,
+    MyBidsComponent
   ],
   imports: [
     BrowserModule,

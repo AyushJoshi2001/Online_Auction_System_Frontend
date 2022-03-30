@@ -55,4 +55,5 @@ span {
   display: flex;
   align-items: center;
   margin-right: 10px;
+  flex-shrink: 0;
 }
