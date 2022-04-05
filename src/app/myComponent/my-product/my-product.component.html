@@ -11,13 +11,20 @@
     />
     <button class="btn btn-success" type="submit">Search</button>
   </form>
-  <p class="prodHead">My Products :</p>
-  <div *ngIf="avail; else elseBlock">
-    <div class="productList" *ngFor="let product of products">
-      <app-product-with-operation
-        [product]="product"
-      ></app-product-with-operation>
-    </div>
+  <div *ngIf="loading; else elseLoading">
+    <p>loading...</p>
   </div>
-  <ng-template #elseBlock><p class="notfound">No Product Found</p></ng-template>
+  <ng-template #elseLoading>
+    <p class="prodHead">My Products :</p>
+    <div *ngIf="avail; else elseBlock">
+      <div class="productList" *ngFor="let product of products">
+        <app-product-with-operation
+          [product]="product"
+        ></app-product-with-operation>
+      </div>
+    </div>
+    <ng-template #elseBlock
+      ><p class="notfound">No Product Found</p></ng-template
+    >
+  </ng-template>
 </div>

@@ -1,13 +1,7 @@
 <div class="main container py-5 px-3 rounded-3 my-5">
   <p class="text-center display-5">Online Auction System</p>
-  <p class="text-center logPara">Login</p>
-  <p class="text-center">
-    New Here?
-    <a routerLink="/auth/register" style="color: rgb(31, 132, 226)"
-      >Create an account</a
-    >
-  </p>
-  <div *ngIf="errorOccured">
+  <p class="text-center logPara">Admin Login</p>
+  <!-- <div *ngIf="errorOccured">
     <p class="alert alert-danger">Wrong Email or Password Try Again!</p>
   </div>
   <form (ngSubmit)="onSubmit()">
@@ -24,7 +18,7 @@
     <div class="mb-3">
       <label for="password" class="form-label">Password</label>
       <input
-        [type]="showPassword"
+        type="password"
         class="form-control"
         id="password"
         name="password"
@@ -32,17 +26,12 @@
       />
     </div>
     <div class="mb-3 form-check">
-      <input
-        type="checkbox"
-        class="form-check-input"
-        id="exampleCheck1"
-        (click)="showPasswordClick()"
-      />
+      <input type="checkbox" class="form-check-input" id="exampleCheck1" />
       <label class="form-check-label" for="exampleCheck1">show password</label>
     </div>
     <button type="submit" class="btn btn-primary">Login</button>
     <div class="text-end">
-      <a routerLink="/admin">Login as Admin</a>
+      <a routerLink="/auth/login">Login as User</a>
     </div>
-  </form>
+  </form> -->
 </div>

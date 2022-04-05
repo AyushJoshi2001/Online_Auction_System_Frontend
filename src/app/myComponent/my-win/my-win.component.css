@@ -1,0 +1,24 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-right: 50px;
+}
+
+.inner_main {
+  display: flex;
+  flex-direction: column;
+  min-width: 650px;
+  background-color: white;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.dpara {
+  width: 100%;
+}
+
+th {
+  width: 100%;
+}

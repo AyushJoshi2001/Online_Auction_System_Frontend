@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from 'src/app/models/product';
 import { User } from 'src/app/models/User';
+import { AuthService } from 'src/app/service/AuthService/auth.service';
 import { ProductService } from 'src/app/service/product/product.service';
 
 @Component({
@@ -23,13 +24,13 @@ export class ProductDetailsComponent implements OnInit {
   ownerOfProduct: boolean = false;
   sold: boolean = false;
   amount: number = 0;
-  constructor(private productService: ProductService, private activatedRoute: ActivatedRoute) { }
+  constructor(private productService: ProductService, private authService: AuthService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.productId = this.activatedRoute.snapshot.paramMap.get("pid") || "";
-    let user = localStorage.getItem("user");
+    let user = this.authService.user;
     if(user!=null){
-      this.loggedInUser = JSON.parse(user);
+      this.loggedInUser = user;
     }
     if(this.productId!=null){
       this.productService.getProductById(this.productId).subscribe((

@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Product } from 'src/app/models/product';
 import { User } from 'src/app/models/User';
+import { AuthService } from 'src/app/service/AuthService/auth.service';
 import { ProductService } from 'src/app/service/product/product.service';
 
 @Component({
@@ -12,13 +13,13 @@ import { ProductService } from 'src/app/service/product/product.service';
 export class ProductWithOperationComponent implements OnInit {
   @Input()
   product!: Product;
-  user: string | null = null;
   loggedInUser: User | null = null;
   bidClosed: boolean = false;
 
-  constructor(private productService: ProductService, private router: Router) { }
+  constructor(private productService: ProductService, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
+    this.loggedInUser = this.authService.user;
     if(this.product.bid_status==="Close"){
       this.bidClosed = true;
     }
@@ -32,9 +33,7 @@ export class ProductWithOperationComponent implements OnInit {
   }
 
   deleteProduct(){
-    this.user  = localStorage.getItem("user");
-    if(this.user){
-      this.loggedInUser = JSON.parse(this.user);
+    if(this.loggedInUser){
       if(this.loggedInUser && this.loggedInUser.uid){
         this.productService.deleteProduct(this.product.pid!, this.loggedInUser.uid).subscribe(
           {
@@ -52,9 +51,8 @@ export class ProductWithOperationComponent implements OnInit {
   }
 
   closeBid(){
-    this.user  = localStorage.getItem("user");
-    if(this.user){
-      this.loggedInUser = JSON.parse(this.user);
+    console.log(this.loggedInUser);
+    if(this.loggedInUser){
       if(this.loggedInUser && this.loggedInUser.uid){
         this.productService.closeBid(""+this.product.pid!, this.loggedInUser.uid).subscribe(
           {

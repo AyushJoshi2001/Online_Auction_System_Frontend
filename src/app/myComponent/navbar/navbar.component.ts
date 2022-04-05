@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/User';
+import { AuthService } from 'src/app/service/AuthService/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,25 +10,34 @@ import { User } from 'src/app/models/User';
 export class NavbarComponent implements OnInit {
 
   userLoggedIn: boolean = false;
-  user: string | null = null;
-  userObject: User | null = null;
+  user: User | null = null;
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.user = localStorage.getItem("user");
+    this.user = this.authService.user;
+    // console.log(this.authService.user);
     if(this.user==null){
       this.userLoggedIn = false;
     }
     else{
       this.userLoggedIn = true;
-      this.userObject = JSON.parse(this.user);
-      // console.log(this.userObject);
     }
   }
 
   logout(){
-    localStorage.removeItem("user");
+    this.authService.logoutUser().subscribe({
+      next: (data) => {
+        // console.log(data);
+      },
+      error: (err) => {
+        console.log(err);
+      },
+      complete: () => {
+        console.log("logout completed...");
+        window.location.href = "/auth/login";
+      }
+    });
   }
 
 }

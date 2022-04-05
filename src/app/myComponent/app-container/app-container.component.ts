@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { User } from 'src/app/models/User';
+import { AuthService } from 'src/app/service/AuthService/auth.service';
 
 @Component({
   selector: 'app-app-container',
@@ -6,16 +9,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app-container.component.css']
 })
 export class AppContainerComponent implements OnInit {
-  user: string | null = null;
 
-  constructor() { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
-      this.user = localStorage.getItem("user");
-
-    if(this.user){
-      console.log("App-Container Component: ", JSON.parse(this.user));
+    if(this.authService.user==null){
+      this.router.navigateByUrl("/auth/login");
     }
+      // this.authService.me().subscribe({
+      //   next: (res) => {
+      //     this.authService.user = res.body;
+      //   },
+      //   error: (err) => {
+      //     // console.log(err);
+      //     if(err.status==403){
+      //       this.router.navigateByUrl("/auth/login");
+      //     }
+      //   },
+      //   complete: () => {
+      //     // console.log(this.user);
+
+      //   }
+      // })
   }
 
 }

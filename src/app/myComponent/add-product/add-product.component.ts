@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductAddDetails } from 'src/app/models/Basic';
 import { User } from 'src/app/models/User';
+import { AuthService } from 'src/app/service/AuthService/auth.service';
 import { ProductService } from 'src/app/service/product/product.service';
 
 @Component({
@@ -14,19 +15,18 @@ export class AddProductComponent implements OnInit {
     title: ""
   };
 
-  user: string | null = null;
   userLoggedIn: User | null = null;
   fillDetails: boolean = true;
-  constructor(private router: Router, private productService: ProductService) { }
+  constructor(private router: Router, private authService: AuthService, private productService: ProductService) { }
 
   ngOnInit(): void {
-    this.user= localStorage.getItem("user");
-    if(this.user == null){
-      this.router.navigateByUrl("/auth/login");
-    }
-    else{
-      this.userLoggedIn = JSON.parse(this.user);
-    }
+    this.userLoggedIn = this.authService.user!;
+    // if(this.user == null){
+    //   this.router.navigateByUrl("/auth/login");
+    // }
+    // else{
+    //   this.userLoggedIn = JSON.parse(this.user);
+    // }
   }
 
 
@@ -37,7 +37,12 @@ export class AddProductComponent implements OnInit {
         this.productAddDetails.uid = this.userLoggedIn.uid;
 
         this.productService.addProduct(this.productAddDetails).subscribe({
-          error: (err) => console.log(err),
+          error: (err) => {
+            console.log(err)
+            if(err.status==403){
+              this.router.navigateByUrl("/auth/login");
+            }
+          },
           complete: () => {
             this.router.navigateByUrl("/app/home");
           }

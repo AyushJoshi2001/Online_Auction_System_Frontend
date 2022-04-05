@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/User';
+import { AuthService } from 'src/app/service/AuthService/auth.service';
 import { UserService } from 'src/app/service/UserService/user.service';
 
 @Component({
@@ -13,13 +14,10 @@ export class ProfileComponent implements OnInit {
     name: ""
   };
   edit: boolean = false;
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private authService: AuthService) { }
 
   ngOnInit(): void {
-    let userString = localStorage.getItem("user");
-    if(userString){
-      this.user = JSON.parse(userString);
-    }
+    this.user = this.authService.user!;
   }
 
   editClick() {

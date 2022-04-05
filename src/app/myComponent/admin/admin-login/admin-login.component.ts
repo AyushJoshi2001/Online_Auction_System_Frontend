@@ -5,19 +5,18 @@ import { User } from 'src/app/models/User';
 import { AuthService } from 'src/app/service/AuthService/auth.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-admin-login',
+  templateUrl: './admin-login.component.html',
+  styleUrls: ['./admin-login.component.css']
 })
+export class AdminLoginComponent implements OnInit {
 
-export class LoginComponent implements OnInit {
   loginDetails : LoginDetails = {
     email: "",
     password: ""
   }
 
   errorOccured: boolean = false;
-  showPassword: string = "password";
 
   loggedInUser: User = {
     uid: null,
@@ -30,15 +29,17 @@ export class LoginComponent implements OnInit {
     about: "",
     isAdmin: null
   };
+
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
-    if(this.authService.user!=null){
-      this.router.navigateByUrl("/app/home");
+    if(localStorage.getItem("user")){
+      this.router.navigateByUrl("/admin/home");
     }
   }
 
   onSubmit(){
+
     this.authService.loginUser(this.loginDetails).subscribe(
       {
         next: (res) => {
@@ -53,20 +54,11 @@ export class LoginComponent implements OnInit {
         }
         ,
         complete: () => {
-          this.authService.user = this.loggedInUser;
-          // console.log(this.authService.user);
-          this.router.navigateByUrl("/app/home");
-        }
+        // console.log(this.loggedInUser);
+        localStorage.setItem("user", JSON.stringify(this.loggedInUser));
+        this.router.navigateByUrl("/admin/home");
       }
+    }
     )
-  }
-
-  showPasswordClick(){
-    if(this.showPassword=="password"){
-      this.showPassword = "text";
-    }
-    else{
-      this.showPassword = "password";
-    }
   }
 }

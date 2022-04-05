@@ -1,0 +1,24 @@
+<div class="main my-5">
+  <p class="text-center fs-1 fw-bold">Won Bids</p>
+  <div class="inner_main">
+    <ul class="d-flex justify-content-evenly">
+      <th>Owner Id</th>
+      <th>Sold To</th>
+      <th>Product Id</th>
+      <th class="text-center">Product Name</th>
+      <th class="text-center">Base Price</th>
+    </ul>
+    <div *ngFor="let product of products">
+      <div class="d-flex justify-content-evenly">
+        <p class="dpara text-center fst-italic">{{ product.uid }}</p>
+        <p class="dpara text-center fst-italic">{{ product.sold_to }}</p>
+        <p class="dpara text-center fst-italic">{{ product.pid }}</p>
+        <p class="dpara text-center fst-italic">{{ product.title }}</p>
+        <p class="dpara text-center fst-italic pl-5">
+          {{ product.base_price | currency: "INR" }}
+        </p>
+      </div>
+    </div>
+  </div>
+  <hr />
+</div>

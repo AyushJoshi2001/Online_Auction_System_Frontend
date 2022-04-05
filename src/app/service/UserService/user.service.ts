@@ -13,7 +13,7 @@ export class UserService {
 
   updateUser(userData: User): Observable<User>{
     const url = this.base_url+"/updateUser";
-    return this.http.put<User>(url, userData);
+    return this.http.put<User>(url, userData, {withCredentials: true});
   }
 
 }
