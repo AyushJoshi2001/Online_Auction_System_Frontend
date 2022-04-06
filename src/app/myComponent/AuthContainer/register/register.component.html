@@ -32,7 +32,7 @@
     <div class="mb-3">
       <label for="password" class="form-label">Password*</label>
       <input
-        type="password"
+        [type]="showPassword"
         class="form-control"
         id="password"
         name="password"
@@ -69,7 +69,12 @@
       ></textarea>
     </div>
     <div class="mb-3 form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+      <input
+        type="checkbox"
+        class="form-check-input"
+        id="exampleCheck1"
+        (click)="showPass()"
+      />
       <label class="form-check-label" for="exampleCheck1">show password</label>
     </div>
     <button type="submit" class="btn btn-primary">register</button>

@@ -11,11 +11,19 @@ export class ProductComponent implements OnInit {
 
   @Input()
   product!: Product;
+  bidClosed: boolean = false;
+  hover: boolean = false;
 
   constructor(private router: Router) {
    }
 
   ngOnInit(): void {
+    if(this.product.bid_status==="Close"){
+      this.bidClosed = true;
+    }
+    else{
+      this.bidClosed = false;
+    }
   }
 
   clickedOnProduct(){

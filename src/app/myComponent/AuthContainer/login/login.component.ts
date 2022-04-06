@@ -53,6 +53,7 @@ export class LoginComponent implements OnInit {
         }
         ,
         complete: () => {
+          localStorage.setItem("u_log", "12345");
           this.authService.user = this.loggedInUser;
           // console.log(this.authService.user);
           this.router.navigateByUrl("/app/home");

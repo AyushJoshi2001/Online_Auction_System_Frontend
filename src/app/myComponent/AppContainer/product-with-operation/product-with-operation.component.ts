@@ -15,6 +15,7 @@ export class ProductWithOperationComponent implements OnInit {
   product!: Product;
   loggedInUser: User | null = null;
   bidClosed: boolean = false;
+  hover: boolean = false;
 
   constructor(private productService: ProductService, private authService: AuthService, private router: Router) { }
 
@@ -51,7 +52,7 @@ export class ProductWithOperationComponent implements OnInit {
   }
 
   closeBid(){
-    console.log(this.loggedInUser);
+    // console.log(this.loggedInUser);
     if(this.loggedInUser){
       if(this.loggedInUser && this.loggedInUser.uid){
         this.productService.closeBid(""+this.product.pid!, this.loggedInUser.uid).subscribe(

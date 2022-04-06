@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from "../../service/AuthService/auth.service";
+import {AuthService} from "../../../service/AuthService/auth.service";
 import { Router } from "@angular/router";
 import { UserData } from 'src/app/models/Basic';
 
@@ -19,6 +19,7 @@ export class RegisterComponent implements OnInit {
   };
 
   errorOccured: boolean = false;
+  showPassword: string = "password";
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -53,5 +54,14 @@ export class RegisterComponent implements OnInit {
         this.router.navigateByUrl("/auth/login");
       }
     })
+  }
+
+  showPass(){
+    if(this.showPassword=="password"){
+      this.showPassword = "text";
+    }
+    else{
+      this.showPassword = "password";
+    }
   }
 }

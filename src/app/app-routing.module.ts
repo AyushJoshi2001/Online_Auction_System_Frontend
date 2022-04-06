@@ -1,21 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AboutComponent } from './myComponent/about/about.component';
-import { AddProductComponent } from './myComponent/add-product/add-product.component';
+import { AboutComponent } from './myComponent/AppContainer/about/about.component';
+import { AddProductComponent } from './myComponent/AppContainer/add-product/add-product.component';
 import { AdminHomeComponent } from './myComponent/admin/admin-home/admin-home.component';
 import { AdminLoginComponent } from './myComponent/admin/admin-login/admin-login.component';
-import { AppContainerComponent } from './myComponent/app-container/app-container.component';
-import { AuthContainerComponent } from './myComponent/auth-container/auth-container.component';
-import { EditProductComponent } from './myComponent/edit-product/edit-product.component';
-import { HomeComponent } from './myComponent/home/home.component';
-import { LoginComponent } from './myComponent/login/login.component';
-import { MyBidsComponent } from './myComponent/my-bids/my-bids.component';
-import { MyProductComponent } from './myComponent/my-product/my-product.component';
-import { MyWinComponent } from './myComponent/my-win/my-win.component';
+import { AppContainerComponent } from './myComponent/AppContainer/app-container/app-container.component';
+import { AuthContainerComponent } from './myComponent/AuthContainer/auth-container/auth-container.component';
+import { EditProductComponent } from './myComponent/AppContainer/edit-product/edit-product.component';
+import { HomeComponent } from './myComponent/AppContainer/home/home.component';
+import { LoginComponent } from './myComponent/AuthContainer/login/login.component';
+import { MyBidsComponent } from './myComponent/AppContainer/my-bids/my-bids.component';
+import { MyProductComponent } from './myComponent/AppContainer/my-product/my-product.component';
+import { MyWinComponent } from './myComponent/AppContainer/my-win/my-win.component';
 import { PageNotFoundComponent } from './myComponent/page-not-found/page-not-found.component';
-import { ProductDetailsComponent } from './myComponent/product-details/product-details.component';
-import { ProfileComponent } from './myComponent/profile/profile.component';
-import { RegisterComponent } from './myComponent/register/register.component';
+import { ProductDetailsComponent } from './myComponent/AppContainer/product-details/product-details.component';
+import { ProfileComponent } from './myComponent/AppContainer/profile/profile.component';
+import { RegisterComponent } from './myComponent/AuthContainer/register/register.component';
 
 const routes: Routes = [
   {path: "", redirectTo:"/app", pathMatch:"full"},

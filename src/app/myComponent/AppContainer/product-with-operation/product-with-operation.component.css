@@ -5,7 +5,11 @@
   padding: 5px;
 }
 
-.main:hover {
+.inside_main {
+  display: flex;
+}
+
+.mainHover {
   cursor: pointer;
   background-color: rgb(235, 231, 231);
 }
@@ -45,4 +49,15 @@ span {
 
 .headText {
   font-size: 14px;
+}
+
+.btnDiv {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+.divColor {
+  background-color: #dfaeb9;
 }

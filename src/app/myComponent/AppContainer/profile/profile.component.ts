@@ -36,9 +36,8 @@ export class ProfileComponent implements OnInit {
           console.log(err);
         },
         complete: () => {
-          console.log(this.user);
+          // console.log(this.user);
           this.edit = false;
-          localStorage.setItem("user", JSON.stringify(this.user));
         }
       }
     )

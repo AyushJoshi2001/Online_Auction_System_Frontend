@@ -16,26 +16,31 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.authService.me().subscribe({
-      next: (res) => {
-        this.loading = true;
-        this.authService.user = res.body;
-        // console.log(authService.user);
+    if(localStorage.getItem("u_log")!=null){
+      this.authService.me().subscribe({
+        next: (res) => {
+          this.loading = true;
+          this.authService.user = res.body;
+          // console.log(authService.user);
 
-      },
-      error: (err) => {
-        // console.log(err);
-        this.loading = false;
-        if(err.status==403){
-          this.router.navigateByUrl("/auth/login");
+        },
+        error: (err) => {
+          // console.log(err);
+          this.loading = false;
+          if(err.status==403){
+
+            this.router.navigateByUrl("/auth/login");
+          }
+        },
+        complete: () => {
+          this.loading = false;
+          // console.log(this.user);
+
         }
-      },
-      complete: () => {
-        this.loading = false;
-        // console.log(this.user);
-
-      }
-    })
-
+      })
+    }
+    else{
+      this.loading = false;
+    }
   }
 }

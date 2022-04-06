@@ -34,6 +34,7 @@ export class NavbarComponent implements OnInit {
         console.log(err);
       },
       complete: () => {
+        localStorage.removeItem("u_log");
         console.log("logout completed...");
         window.location.href = "/auth/login";
       }

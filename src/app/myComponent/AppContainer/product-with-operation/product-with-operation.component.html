@@ -1,4 +1,9 @@
-<div class="mb-3 main">
+<div
+  class="mb-3 main"
+  (mouseover)="hover = true"
+  (mouseleave)="hover = false"
+  [ngClass]="{ divColor: bidClosed, mainHover: hover && !bidClosed }"
+>
   <div class="inside_main">
     <div class="box">
       <div class="imgBox" *ngIf="product.product_pic; else changeProductPic">
@@ -34,7 +39,7 @@
       <button class="btn btn-danger" (click)="deleteProduct()">Delete</button>
     </div>
     <div class="btnDiv" *ngIf="bidClosed">
-      <p class="btn btn-success">Sold</p>
+      <p class="fw-bold">Sold</p>
     </div>
   </div>
 </div>
