@@ -15,6 +15,7 @@ export class MyProductComponent implements OnInit {
   avail: boolean = false;
   search: string = "";
   loading: boolean = true;
+  searchBy: string = "title";
 
   userLoggedIn: User | null = null;
 
@@ -22,39 +23,83 @@ export class MyProductComponent implements OnInit {
 
   ngOnInit(): void {
     this.userLoggedIn = this.authService.user;
-    this.searchQuery();
-    // if(this.user == null){
-    //   this.router.navigateByUrl("/auth/login");
-    // }
-    // else{
-    //   this.userLoggedIn = JSON.parse(this.user);
-    //   this.searchQuery();
-    // }
+    this.productService.getAllProducts().subscribe({
+      next: (res) => {
+        // console.log(res);
+        // console.log(res.body!.products);
+        this.loading = true;
+        this.products=[...res.body!.products!];
+      },
+      error: (err) => {
+        this.loading = false;
+        console.log(err);
+        if(err.status==403){
+          this.router.navigateByUrl("/auth/login");
+        }
+      },
+      complete: () => {
+        this.loading = false;
+        if(this.products && this.products.length>0){
+          this.avail = true;
+        }
+      }
+    });
   }
 
 
   searchQuery(): void {
     this.search = this.search;
-    if(this.userLoggedIn && this.userLoggedIn.uid){
-      // console.log(this.search+"/"+this.userLoggedIn.uid);
-      this.productService.getByTitleAndId(this.search, this.userLoggedIn.uid).subscribe(
+    if(this.searchBy=="title"){
+
+      this.productService.getByTitle(this.search).subscribe(
         {
-          next: (data: Product[]) => {
-            this.loading = true;
-            this.products = data;
-          },
-          complete: () => {
-            this.loading = false;
-            if(this.products.length==0){
-              this.avail = false;
-            }
-            else {
-              this.avail = true;
-            }
+        next: (res) => {
+          // console.log(res.body);
+          this.products = res.body!;
+        },
+        complete: () => {
+          if(this.products.length==0){
+            this.avail = false;
+          }
+          else {
+            this.avail = true;
           }
         }
-      )
+      })
+    }
+    else if(this.searchBy=="max_price"){
+      this.productService.getByMaxPrice(this.search).subscribe(
+        {
+        next: (res) => {
+          // console.log(res.body);
+          this.products = res.body!;
+        },
+        complete: () => {
+          if(this.products.length==0){
+            this.avail = false;
+          }
+          else {
+            this.avail = true;
+          }
+        }
+      })
+    }
+    else{
+      this.productService.getById(this.search).subscribe(
+        {
+        next: (res) => {
+          // console.log(res.body);
+          this.products = res.body!;
+        },
+        complete: () => {
+          if(this.products.length==0){
+            this.avail = false;
+          }
+          else {
+            this.avail = true;
+          }
+        }
+      })
     }
   }
-
 }

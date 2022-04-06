@@ -1,5 +1,17 @@
 <div class="main container p-3">
   <form (ngSubmit)="searchQuery()">
+    <label for="searchBy" class="searchLabel">Search By</label>
+    <select
+      name="searchBy"
+      class="search_by"
+      id="searchBy"
+      [value]="searchBy"
+      [(ngModel)]="searchBy"
+    >
+      <option value="title">Title</option>
+      <option value="pid">Product Id</option>
+      <option value="max_price">Max Price</option>
+    </select>
     <input
       class="search"
       type="text"

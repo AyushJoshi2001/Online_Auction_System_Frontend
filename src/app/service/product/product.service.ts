@@ -29,6 +29,16 @@ export class ProductService {
     return this.http.get<Product[]>(url,{observe: "response", withCredentials: true});
   }
 
+  getByMaxPrice(query: string): Observable<HttpResponse<Product[]>> {
+    const url = this.base_url+"/product/getByMaxPrice/"+query;
+    return this.http.get<Product[]>(url,{observe: "response", withCredentials: true});
+  }
+
+  getById(query: string): Observable<HttpResponse<Product[]>> {
+    const url = this.base_url+"/product/getById/"+query;
+    return this.http.get<Product[]>(url,{observe: "response", withCredentials: true});
+  }
+
   addProduct(data: ProductAddDetails){
     const url = this.base_url+"/addProduct";
     return this.http.post(url, data, {withCredentials: true});

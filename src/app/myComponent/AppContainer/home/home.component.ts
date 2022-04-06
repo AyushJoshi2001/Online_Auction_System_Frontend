@@ -14,6 +14,8 @@ export class HomeComponent implements OnInit {
   avail: boolean = false;
   search: string = "";
   loading: boolean = true;
+  searchBy: string = "title";
+
   constructor(private productService: ProductService, private router: Router) {
   }
 
@@ -43,8 +45,10 @@ export class HomeComponent implements OnInit {
 
   searchQuery(): void {
     this.search = this.search;
-    this.productService.getByTitle(this.search).subscribe(
-      {
+    if(this.searchBy=="title"){
+
+      this.productService.getByTitle(this.search).subscribe(
+        {
         next: (res) => {
           // console.log(res.body);
           this.products = res.body!;
@@ -57,7 +61,41 @@ export class HomeComponent implements OnInit {
             this.avail = true;
           }
         }
-      }
-    )
+      })
+    }
+    else if(this.searchBy=="max_price"){
+      this.productService.getByMaxPrice(this.search).subscribe(
+        {
+        next: (res) => {
+          // console.log(res.body);
+          this.products = res.body!;
+        },
+        complete: () => {
+          if(this.products.length==0){
+            this.avail = false;
+          }
+          else {
+            this.avail = true;
+          }
+        }
+      })
+    }
+    else{
+      this.productService.getById(this.search).subscribe(
+        {
+        next: (res) => {
+          // console.log(res.body);
+          this.products = res.body!;
+        },
+        complete: () => {
+          if(this.products.length==0){
+            this.avail = false;
+          }
+          else {
+            this.avail = true;
+          }
+        }
+      })
+    }
   }
 }
