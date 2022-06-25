@@ -29,6 +29,11 @@ export class ProductService {
     return this.http.get<Product[]>(url,{observe: "response", withCredentials: true});
   }
 
+  getByUid(uid: number): Observable<HttpResponse<Product[]>> {
+    const url = this.base_url+"/product/getByUid/"+uid;
+    return this.http.get<Product[]>(url,{observe: "response", withCredentials: true});
+  }
+
   getByMaxPrice(query: string): Observable<HttpResponse<Product[]>> {
     const url = this.base_url+"/product/getByMaxPrice/"+query;
     return this.http.get<Product[]>(url,{observe: "response", withCredentials: true});

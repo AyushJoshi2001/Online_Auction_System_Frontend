@@ -23,12 +23,12 @@ export class MyProductComponent implements OnInit {
 
   ngOnInit(): void {
     this.userLoggedIn = this.authService.user;
-    this.productService.getAllProducts().subscribe({
+    this.productService.getByUid(this.userLoggedIn?.uid!).subscribe({
       next: (res) => {
-        // console.log(res);
+        // console.log(res.body);
         // console.log(res.body!.products);
         this.loading = true;
-        this.products=[...res.body!.products!];
+        this.products = res.body!;
       },
       error: (err) => {
         this.loading = false;
