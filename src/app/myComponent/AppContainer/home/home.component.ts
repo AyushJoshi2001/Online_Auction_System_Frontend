@@ -15,17 +15,23 @@ export class HomeComponent implements OnInit {
   search: string = "";
   loading: boolean = true;
   searchBy: string = "title";
+  pageNo: number = 0;
+  totalProductCount: any = 0;
 
   constructor(private productService: ProductService, private router: Router) {
   }
 
   ngOnInit(): void {
+    this.getAllProducts();
+  }
+
+  getAllProducts = () => {
     this.productService.getAllProducts().subscribe({
       next: (res) => {
         // console.log(res);
         // console.log(res.body!.products);
         this.loading = true;
-        this.products=[...res.body!.products!];
+        this.products=res.body!.products!;
       },
       error: (err) => {
         this.loading = false;
@@ -38,6 +44,7 @@ export class HomeComponent implements OnInit {
         this.loading = false;
         if(this.products && this.products.length>0){
           this.avail = true;
+          this.getTotalProductCount();
         }
       }
     });
@@ -97,5 +104,27 @@ export class HomeComponent implements OnInit {
         }
       })
     }
+  }
+
+  onClickPrev() {
+    if(this.pageNo>0){
+      this.pageNo--;
+    }
+  }
+
+  onClickNext() {
+    this.pageNo++;
+  }
+
+  getTotalProductCount() {
+    this.productService.getTotalProductCount().subscribe({
+      next: (data) => {
+        this.totalProductCount = data;
+        console.log("count => ",this.totalProductCount);
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
   }
 }

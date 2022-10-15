@@ -1,28 +1,17 @@
 <div class="main container p-3">
   <form (ngSubmit)="searchQuery()">
     <label for="searchBy" class="searchLabel">Search By</label>
-    <select
-      name="searchBy"
-      class="search_by"
-      id="searchBy"
-      [value]="searchBy"
-      [(ngModel)]="searchBy"
-    >
+    <select name="searchBy" class="search_by" id="searchBy" [value]="searchBy" [(ngModel)]="searchBy">
       <option value="title">Title</option>
       <option value="pid">Product Id</option>
       <option value="max_price">Max Price</option>
     </select>
-    <input
-      class="search"
-      type="text"
-      placeholder="Search..."
-      name="search"
-      id="search"
-      [(ngModel)]="search"
-      value="search"
-    />
+    <input class="search" type="text" placeholder="Search..." name="search" id="search" [(ngModel)]="search"
+      value="search" />
     <button class="btn btn-success" type="submit">Search</button>
   </form>
+  <button class="btn btn-success" style="float: right; margin-bottom: 2rem;" (click)="getAllProducts()">Refresh</button>
+  <div style="clear: both;"></div>
   <div *ngIf="loading; else elseLoading">loading...</div>
   <ng-template #elseLoading>
     <div *ngIf="avail; else elseBlock">
@@ -30,8 +19,13 @@
         <app-product [product]="product"></app-product>
       </div>
     </div>
-    <ng-template #elseBlock
-      ><p class="notfound">No Product Found</p></ng-template
-    >
+    <ng-template #elseBlock>
+      <p class="notfound">No Product Found</p>
+    </ng-template>
   </ng-template>
+  <div class="pagination">
+    <button class="btn btn-success" (click)="onClickPrev()">Prev</button>
+    <span class="mx-3">{{pageNo}}</span>
+    <button class="btn btn-success" (click)="onClickNext()">Next</button>
+  </div>
 </div>

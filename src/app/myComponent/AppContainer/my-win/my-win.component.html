@@ -1,24 +1,33 @@
 <div class="main my-5">
   <p class="text-center fs-1 fw-bold">Won Bids</p>
   <div class="inner_main">
-    <ul class="d-flex justify-content-evenly">
-      <th>Owner Id</th>
-      <th>Sold To</th>
-      <th>Product Id</th>
-      <th class="text-center">Product Name</th>
-      <th class="text-center">Base Price</th>
-    </ul>
-    <div *ngFor="let product of products">
-      <div class="d-flex justify-content-evenly">
-        <p class="dpara text-center fst-italic">{{ product.uid }}</p>
-        <p class="dpara text-center fst-italic">{{ product.sold_to }}</p>
-        <p class="dpara text-center fst-italic">{{ product.pid }}</p>
-        <p class="dpara text-center fst-italic">{{ product.title }}</p>
-        <p class="dpara text-center fst-italic pl-5">
+    <table>
+      <thead class="text-center">
+        <th>Owner Id</th>
+        <th>Sold To</th>
+        <th>Product Id</th>
+        <th>Product Name</th>
+        <th>Base Price</th>
+        <th>Sold Price</th>
+        <th>Details</th>
+      </thead>
+      <tbody class="text-center" *ngFor="let product of products">
+        <td class="fst-italic">{{ product.uid }}</td>
+        <td class="fst-italic">{{ product.sold_to }}</td>
+        <td class="fst-italic">{{ product.pid }}</td>
+        <td class="fst-italic">{{ product.title }}</td>
+        <td class="fst-italic">
           {{ product.base_price | currency: "INR" }}
-        </p>
-      </div>
-    </div>
+        </td>
+        <td class="fst-italic">
+          {{ product.sold_price | currency: "INR" }}
+        </td>
+        <td class="fst-italic">-</td>
+        <td class="fst-italic"><button class="btn btn-success t-small" routerLink="../product/{{product.pid}}">More
+            Details</button>
+        </td>
+      </tbody>
+    </table>
   </div>
   <hr />
 </div>

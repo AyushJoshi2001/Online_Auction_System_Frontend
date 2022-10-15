@@ -4,6 +4,7 @@ export interface ProductAddDetails{
   description?: string;
   uid?: number;
   base_price?: number;
+  bid_end_date?: Date;
 }
 
 export interface UserData {

@@ -6,47 +6,28 @@
   <form (ngSubmit)="onSubmit()">
     <div class="mb-3">
       <label for="title" class="form-label">Title</label>
-      <input
-        type="text"
-        class="form-control"
-        id="title"
-        name="title"
-        placeholder="Enter Title Here"
-        [(ngModel)]="productAddDetails.title"
-      />
+      <input type="text" class="form-control" id="title" name="title" placeholder="Enter Title Here"
+        [(ngModel)]="productAddDetails.title" />
     </div>
     <div class="mb-3">
       <label for="product_pic" class="form-label">Product Picture URL</label>
-      <input
-        type="text"
-        class="form-control"
-        id="product_pic"
-        name="product_pic"
-        placeholder="Enter Product Picture URL Here"
-        [(ngModel)]="productAddDetails.product_pic"
-      />
+      <input type="text" class="form-control" id="product_pic" name="product_pic"
+        placeholder="Enter Product Picture URL Here" [(ngModel)]="productAddDetails.product_pic" />
     </div>
     <div class="mb-3">
       <label for="description" class="form-label">Description</label>
-      <textarea
-        type="email"
-        class="form-control"
-        id="description"
-        name="description"
-        placeholder="Enter Description Here"
-        [(ngModel)]="productAddDetails.description"
-      ></textarea>
+      <textarea type="email" class="form-control" id="description" name="description"
+        placeholder="Enter Description Here" [(ngModel)]="productAddDetails.description"></textarea>
     </div>
     <div class="mb-3">
       <label for="base_price" class="form-label">Base Price</label>
-      <input
-        type="text"
-        class="form-control"
-        id="base_price"
-        name="base_price"
-        placeholder="Enter Base Price Here"
-        [(ngModel)]="productAddDetails.base_price"
-      />
+      <input type="number" class="form-control" id="base_price" name="base_price" placeholder="Enter Base Price Here"
+        [(ngModel)]="productAddDetails.base_price" />
+    </div>
+    <div class="mb-3">
+      <label for="bid_end_date" class="form-label">Bid End Date & Time</label>
+      <input type="datetime-local" class="form-control" id="bid_end_date" name="bid_end_date"
+        placeholder="Bid End Date & Time" [(ngModel)]="productAddDetails.bid_end_date" />
     </div>
     <button type="submit" class="btn btn-primary addBtn">Click to Add</button>
   </form>

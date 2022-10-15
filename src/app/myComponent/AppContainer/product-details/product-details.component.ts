@@ -23,6 +23,7 @@ export class ProductDetailsComponent implements OnInit {
   bidSuccess: boolean = false;
   ownerOfProduct: boolean = false;
   sold: boolean = false;
+  biddingClosed: boolean = false;
   amount: number = 0;
   constructor(private productService: ProductService, private authService: AuthService, private activatedRoute: ActivatedRoute) { }
 
@@ -49,12 +50,8 @@ export class ProductDetailsComponent implements OnInit {
               }
               // console.log(this.ownerOfProduct);
 
-            if(this.product.sold_status=="Sold"){
-              this.sold = true;
-            }
-            else{
-              this.sold = false;
-            }
+              this.sold = this.product.sold_status=="Sold" ? true : false;
+              this.biddingClosed = this.product.bid_status=="Open" ? false : true;
           }
         }
       ))

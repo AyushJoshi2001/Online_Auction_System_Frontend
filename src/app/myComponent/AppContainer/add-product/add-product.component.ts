@@ -31,11 +31,11 @@ export class AddProductComponent implements OnInit {
 
 
   onSubmit(){
-    if(this.productAddDetails.title.length > 0 && this.productAddDetails.description!.length > 0){
+    if(this.productAddDetails.title.length > 0 && this.productAddDetails.description!.length > 0 && this.productAddDetails.bid_end_date){
       this.fillDetails = true;
       if(this.userLoggedIn && this.userLoggedIn.uid != null){
         this.productAddDetails.uid = this.userLoggedIn.uid;
-
+        this.productAddDetails.bid_end_date = new Date(this.productAddDetails.bid_end_date!);
         this.productService.addProduct(this.productAddDetails).subscribe({
           error: (err) => {
             console.log(err)

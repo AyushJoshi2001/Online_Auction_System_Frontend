@@ -1,42 +1,29 @@
 <div class="main container p-3">
   <form (ngSubmit)="searchQuery()">
     <label for="searchBy" class="searchLabel">Search By</label>
-    <select
-      name="searchBy"
-      class="search_by"
-      id="searchBy"
-      [value]="searchBy"
-      [(ngModel)]="searchBy"
-    >
+    <select name="searchBy" class="search_by" id="searchBy" [value]="searchBy" [(ngModel)]="searchBy">
       <option value="title">Title</option>
       <option value="pid">Product Id</option>
       <option value="max_price">Max Price</option>
     </select>
-    <input
-      class="search"
-      type="text"
-      placeholder="Search..."
-      name="search"
-      id="search"
-      [(ngModel)]="search"
-      value="search"
-    />
+    <input class="search" type="text" placeholder="Search..." name="search" id="search" [(ngModel)]="search"
+      value="search" />
     <button class="btn btn-success" type="submit">Search</button>
   </form>
   <div *ngIf="loading; else elseLoading">
     <p>loading...</p>
   </div>
   <ng-template #elseLoading>
+    <button class="btn btn-success" style="float: right;" (click)="getProductsByUid()">Refresh</button>
+    <div style="clear: both;"></div>
     <p class="prodHead">My Products :</p>
     <div *ngIf="avail; else elseBlock">
       <div class="productList" *ngFor="let product of products">
-        <app-product-with-operation
-          [product]="product"
-        ></app-product-with-operation>
+        <app-product-with-operation [product]="product"></app-product-with-operation>
       </div>
     </div>
-    <ng-template #elseBlock
-      ><p class="notfound">No Product Found</p></ng-template
-    >
+    <ng-template #elseBlock>
+      <p class="notfound">No Product Found</p>
+    </ng-template>
   </ng-template>
 </div>

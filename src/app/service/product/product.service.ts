@@ -90,4 +90,9 @@ export class ProductService {
     return this.http.get<Product[]>(url, {withCredentials: true});
   }
 
+  getTotalProductCount() {
+    const url = this.base_url + "/product/totalCount";
+    return this.http.get(url);
+  }
+
 }

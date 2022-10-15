@@ -9,4 +9,6 @@ export interface Product{
   sold_status?: string;
   sold_to?: number;
   base_price?: number;
+  sold_price?: number;
+  bid_end_date?: Date;
 }

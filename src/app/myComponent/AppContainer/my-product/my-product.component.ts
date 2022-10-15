@@ -23,6 +23,10 @@ export class MyProductComponent implements OnInit {
 
   ngOnInit(): void {
     this.userLoggedIn = this.authService.user;
+    this.getProductsByUid();
+  }
+
+  getProductsByUid = () => {
     this.productService.getByUid(this.userLoggedIn?.uid!).subscribe({
       next: (res) => {
         // console.log(res.body);
@@ -45,7 +49,6 @@ export class MyProductComponent implements OnInit {
       }
     });
   }
-
 
   searchQuery(): void {
     this.search = this.search;

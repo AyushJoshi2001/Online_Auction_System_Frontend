@@ -1,9 +1,5 @@
-<div
-  class="mb-3 main"
-  (mouseover)="hover = true"
-  (mouseleave)="hover = false"
-  [ngClass]="{ divColor: bidClosed, mainHover: hover && !bidClosed }"
->
+<div class="mb-3 main" (mouseover)="hover = true" (mouseleave)="hover = false"
+  [ngClass]="{ divColor: bidClosed, mainHover: hover && !bidClosed }">
   <div class="box">
     <div class="imgBox" *ngIf="product.product_pic; else changeProductPic">
       <img [src]="product.product_pic" alt="..." />
@@ -22,8 +18,11 @@
         Description : <span>{{ product.description }}</span>
       </p>
       <p class="headText">
-        Bidding Status : <span>{{ product.bid_status }}</span>
+        Time Left : <span>{{ timeLeft }} minutes</span>
       </p>
+      <!-- <p class="headText">
+        Bidding Status : <span>{{ product.bid_status }}</span>
+      </p> -->
       <p class="headText">
         Base Price : <span>{{ product.base_price }}</span>
       </p>

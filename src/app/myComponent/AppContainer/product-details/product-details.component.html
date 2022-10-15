@@ -59,7 +59,7 @@
         </p>
       </div>
       <hr />
-      <div *ngIf="!sold; else Sold">
+      <div *ngIf="!biddingClosed; else bidding_closed">
         <form
           class="mb-3"
           (ngSubmit)="onSubmit()"
@@ -92,9 +92,9 @@
           <p class="fw-bold text-center">You are Owner of this Product.</p>
         </ng-template>
       </div>
-      <ng-template #Sold>
-        <p class="fw-bold text-center">Product Sold.</p>
-        <p class="fw-bold text-center">
+      <ng-template #bidding_closed>
+        <p class="fw-bold text-center">Product {{product.sold_status}}.</p>
+        <p class="fw-bold text-center" *ngIf="sold">
           Sold To (User Id): {{ product.sold_to }}
         </p>
       </ng-template>

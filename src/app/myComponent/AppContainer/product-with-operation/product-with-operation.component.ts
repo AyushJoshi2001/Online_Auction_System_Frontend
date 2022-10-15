@@ -16,6 +16,7 @@ export class ProductWithOperationComponent implements OnInit {
   loggedInUser: User | null = null;
   bidClosed: boolean = false;
   hover: boolean = false;
+  timeLeft: any = 0;
 
   constructor(private productService: ProductService, private authService: AuthService, private router: Router) { }
 
@@ -26,6 +27,19 @@ export class ProductWithOperationComponent implements OnInit {
     }
     else{
       this.bidClosed = false;
+    }
+
+    let endDateTime: any = new Date(this.product.bid_end_date!);
+
+    this.timeLeft = Math.round((endDateTime.valueOf() - Date.now())/(1000*60));
+    if(this.timeLeft < 0){
+      this.timeLeft = 0;
+    }
+
+    // time up or not
+
+    if (this.timeLeft <= 0 && this.product.bid_status === 'Open') {
+      this.closeBid();
     }
   }
 
