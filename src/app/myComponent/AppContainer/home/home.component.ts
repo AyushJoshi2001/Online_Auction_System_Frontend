@@ -15,52 +15,38 @@ export class HomeComponent implements OnInit {
   search: string = "";
   loading: boolean = true;
   searchBy: string = "title";
-  pageNo: number = 0;
+  pageNo: number = 1;
+  pageSize: number = 2;
   totalProductCount: any = 0;
 
   constructor(private productService: ProductService, private router: Router) {
   }
 
   ngOnInit(): void {
-    this.getAllProducts();
-  }
-
-  getAllProducts = () => {
-    this.productService.getAllProducts().subscribe({
-      next: (res) => {
-        // console.log(res);
-        // console.log(res.body!.products);
-        this.loading = true;
-        this.products=res.body!.products!;
-      },
-      error: (err) => {
-        this.loading = false;
-        console.log(err);
-        if(err.status==403){
-          this.router.navigateByUrl("/auth/login");
-        }
-      },
-      complete: () => {
-        this.loading = false;
-        if(this.products && this.products.length>0){
-          this.avail = true;
-          this.getTotalProductCount();
-        }
-      }
-    });
+    this.pageNo = 1;
+    this.searchQuery();
   }
 
   searchQuery(): void {
-    this.search = this.search;
+    this.loading = true;
+    this.getTotalProductCount();
     if(this.searchBy=="title"){
 
-      this.productService.getByTitle(this.search).subscribe(
+      this.productService.getAllProducts(this.pageNo, this.pageSize, this.search, "", "").subscribe(
         {
         next: (res) => {
           // console.log(res.body);
-          this.products = res.body!;
+          this.products=res.body!.products!;
+        },
+        error: (err) => {
+          this.loading = false;
+          console.log(err);
+          if(err.status==403){
+            this.router.navigateByUrl("/auth/login");
+          }
         },
         complete: () => {
+          this.loading = false;
           if(this.products.length==0){
             this.avail = false;
           }
@@ -71,13 +57,21 @@ export class HomeComponent implements OnInit {
       })
     }
     else if(this.searchBy=="max_price"){
-      this.productService.getByMaxPrice(this.search).subscribe(
+      this.productService.getAllProducts(this.pageNo, this.pageSize, "", this.search, "").subscribe(
         {
         next: (res) => {
           // console.log(res.body);
-          this.products = res.body!;
+          this.products=res.body!.products!
+        },
+        error: (err) => {
+          this.loading = false;
+          console.log(err);
+          if(err.status==403){
+            this.router.navigateByUrl("/auth/login");
+          }
         },
         complete: () => {
+          this.loading = false;
           if(this.products.length==0){
             this.avail = false;
           }
@@ -88,13 +82,21 @@ export class HomeComponent implements OnInit {
       })
     }
     else{
-      this.productService.getById(this.search).subscribe(
+      this.productService.getAllProducts(this.pageNo, this.pageSize, "", "", this.search).subscribe(
         {
         next: (res) => {
           // console.log(res.body);
-          this.products = res.body!;
+          this.products=res.body!.products!
+        },
+        error: (err) => {
+          this.loading = false;
+          console.log(err);
+          if(err.status==403){
+            this.router.navigateByUrl("/auth/login");
+          }
         },
         complete: () => {
+          this.loading = false;
           if(this.products.length==0){
             this.avail = false;
           }
@@ -107,24 +109,51 @@ export class HomeComponent implements OnInit {
   }
 
   onClickPrev() {
-    if(this.pageNo>0){
+    if(this.pageNo>1){
       this.pageNo--;
+      this.searchQuery();
     }
   }
 
   onClickNext() {
-    this.pageNo++;
+    if((this.pageNo * this.pageSize)<this.totalProductCount) {
+      this.pageNo++;
+      this.searchQuery();
+    }
   }
 
+  // update count api like getAllProduct api.
   getTotalProductCount() {
-    this.productService.getTotalProductCount().subscribe({
-      next: (data) => {
-        this.totalProductCount = data;
-        console.log("count => ",this.totalProductCount);
-      },
-      error: (err) => {
-        console.log(err);
-      }
-    })
+    if(this.searchBy=="max_price") {
+      this.productService.getTotalProductCountByMaxPrice(this.search).subscribe({
+        next: (data) => {
+          this.totalProductCount = data;
+          console.log("count => ",this.totalProductCount);
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      })
+    }
+    else if(this.searchBy=="pid") {
+      this.totalProductCount = 1;
+    }
+    else {
+      this.productService.getTotalProductCount().subscribe({
+        next: (data) => {
+          this.totalProductCount = data;
+          console.log("count => ",this.totalProductCount);
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      })
+    }
+  }
+
+  updateSearch() {
+    this.pageNo = 1;
+    this.search = '';
+    this.searchQuery();
   }
 }

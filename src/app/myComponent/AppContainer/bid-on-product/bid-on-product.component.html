@@ -1,5 +1,5 @@
 <div class="main my-5">
-  <p class="text-center fs-1 fw-bold">Top Bids</p>
+  <p class="text-center fs-1 fw-bold">Top 10 Bids</p>
   <div class="inner_main">
     <ul class="d-flex justify-content-evenly">
       <th>User Id</th>
@@ -7,10 +7,10 @@
       <th class="ps-4">Amount</th>
     </ul>
     <div *ngFor="let bid of bids">
-      <div class="d-flex justify-content-evenly">
-        <p class="dpara text-center fst-italic">{{ bid.uid }}</p>
-        <p class="dpara text-center fst-italic">{{ bid.pid }}</p>
-        <p class="dpara text-center fst-italic pl-5">
+      <div class="d-flex justify-content-evenly p-1 rounded mb-2" [ngClass]="user?.uid==bid.uid ? 'bg-ogange' : ''">
+        <p class="dpara text-center fst-italic m-auto">{{ bid.uid }}</p>
+        <p class="dpara text-center fst-italic m-auto">{{ bid.pid }}</p>
+        <p class="dpara text-center fst-italic pl-5 m-auto">
           {{ bid.amount | currency: "INR" }}
         </p>
       </div>

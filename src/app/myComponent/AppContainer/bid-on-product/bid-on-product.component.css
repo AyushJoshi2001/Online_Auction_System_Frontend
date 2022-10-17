@@ -22,3 +22,8 @@
 th {
   width: 100%;
 }
+
+.bg-ogange {
+  background-color: rgb(236, 191, 86);
+  color: white;
+}

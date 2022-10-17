@@ -16,6 +16,9 @@ export class MyProductComponent implements OnInit {
   search: string = "";
   loading: boolean = true;
   searchBy: string = "title";
+  pageNo: number = 1;
+  pageSize: number = 10;
+  totalProductCount: any = 0;
 
   userLoggedIn: User | null = null;
 
@@ -103,6 +106,20 @@ export class MyProductComponent implements OnInit {
           }
         }
       })
+    }
+  }
+
+  onClickPrev() {
+    if(this.pageNo>1){
+      this.pageNo--;
+      this.getProductsByUid();
+    }
+  }
+
+  onClickNext() {
+    if((this.pageNo * this.pageSize)<this.totalProductCount) {
+      this.pageNo++;
+      this.getProductsByUid();
     }
   }
 }

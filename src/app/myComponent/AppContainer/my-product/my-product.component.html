@@ -26,4 +26,9 @@
       <p class="notfound">No Product Found</p>
     </ng-template>
   </ng-template>
+  <div class="pagination">
+    <button class="btn btn-success" (click)="onClickPrev()" [disabled]="pageNo<=1">Prev</button>
+    <span class="mx-3">{{pageNo}}</span>
+    <button class="btn btn-success" (click)="onClickNext()" [disabled]="(this.pageNo * this.pageSize)>=this.totalProductCount">Next</button>
+  </div>
 </div>

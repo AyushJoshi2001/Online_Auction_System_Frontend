@@ -14,8 +14,8 @@ export class ProductService {
     this.base_url = "http://localhost:8080/api";
   }
 
-  getAllProducts(): Observable<HttpResponse<{products: Product[]}>> {
-    const url = this.base_url+"/product";
+  getAllProducts(pageNo: number, pageSize: number, title: any, maxPrice: any, pid: any): Observable<HttpResponse<{products: Product[]}>> {
+    const url = this.base_url+"/product?pageNo="+pageNo+"&pageSize="+pageSize+"&title="+title+"&maxPrice="+maxPrice+"&pid="+pid;
     return this.http.get<{products: Product[]}>(url, {observe: "response"});
   }
 
@@ -95,4 +95,8 @@ export class ProductService {
     return this.http.get(url);
   }
 
+  getTotalProductCountByMaxPrice(maxPrice: any) {
+    const url = this.base_url + "/product/totalCountByMaxPrice?maxPrice="+maxPrice;
+    return this.http.get(url);
+  }
 }

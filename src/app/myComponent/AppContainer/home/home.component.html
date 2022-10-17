@@ -1,7 +1,7 @@
 <div class="main container p-3">
   <form (ngSubmit)="searchQuery()">
     <label for="searchBy" class="searchLabel">Search By</label>
-    <select name="searchBy" class="search_by" id="searchBy" [value]="searchBy" [(ngModel)]="searchBy">
+    <select name="searchBy" class="search_by" id="searchBy" [value]="searchBy" [(ngModel)]="searchBy" (change)="updateSearch()">
       <option value="title">Title</option>
       <option value="pid">Product Id</option>
       <option value="max_price">Max Price</option>
@@ -10,7 +10,7 @@
       value="search" />
     <button class="btn btn-success" type="submit">Search</button>
   </form>
-  <button class="btn btn-success" style="float: right; margin-bottom: 2rem;" (click)="getAllProducts()">Refresh</button>
+  <button class="btn btn-success" style="float: right; margin-bottom: 2rem;" (click)="searchQuery()">Refresh</button>
   <div style="clear: both;"></div>
   <div *ngIf="loading; else elseLoading">loading...</div>
   <ng-template #elseLoading>
@@ -24,8 +24,8 @@
     </ng-template>
   </ng-template>
   <div class="pagination">
-    <button class="btn btn-success" (click)="onClickPrev()">Prev</button>
+    <button class="btn btn-success" (click)="onClickPrev()" [disabled]="pageNo<=1">Prev</button>
     <span class="mx-3">{{pageNo}}</span>
-    <button class="btn btn-success" (click)="onClickNext()">Next</button>
+    <button class="btn btn-success" (click)="onClickNext()" [disabled]="(this.pageNo * this.pageSize)>=this.totalProductCount">Next</button>
   </div>
 </div>
