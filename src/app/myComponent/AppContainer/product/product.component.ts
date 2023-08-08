@@ -11,12 +11,13 @@ import { ProductService } from 'src/app/service/product/product.service';
   styleUrls: ['./product.component.css'],
 })
 export class ProductComponent implements OnInit {
-  @Input()
-  product!: Product;
+  @Input() product!: Product;
+  @Input() bgColor: any;
   bidClosed: boolean = false;
   hover: boolean = false;
   timeLeft: any = 0;
   loggedInUser: User | null = null;
+
 
   constructor(
     private router: Router,

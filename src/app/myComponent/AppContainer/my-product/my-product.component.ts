@@ -21,6 +21,11 @@ export class MyProductComponent implements OnInit {
   totalProductCount: any = 0;
 
   userLoggedIn: User | null = null;
+  color: any[] = [
+    "#b9d1e9",
+    "#8fc79b",
+    "#a99dc4"
+  ];
 
   constructor(private productService: ProductService, private authService: AuthService, private router: Router) { }
 

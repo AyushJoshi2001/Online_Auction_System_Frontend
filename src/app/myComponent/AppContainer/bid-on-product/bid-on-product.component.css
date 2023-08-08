@@ -4,15 +4,16 @@
   align-items: center;
   justify-content: center;
   padding-right: 50px;
+  color: #FFFFFF;
 }
 
 .inner_main {
   display: flex;
   flex-direction: column;
   min-width: 400px;
-  background-color: white;
   border-radius: 20px;
   padding: 20px;
+  background-color: #212529;
 }
 
 .dpara {

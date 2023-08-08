@@ -14,16 +14,16 @@
   <div style="clear: both;"></div>
   <div *ngIf="loading; else elseLoading">loading...</div>
   <ng-template #elseLoading>
-    <div *ngIf="avail; else elseBlock">
-      <div class="productList" *ngFor="let product of products">
-        <app-product [product]="product"></app-product>
+    <div  class="productList" *ngIf="avail; else elseBlock">
+      <div *ngFor="let product of products; let i=index">
+        <app-product [product]="product" [bgColor]="color[i%color.length]"></app-product>
       </div>
     </div>
     <ng-template #elseBlock>
       <p class="notfound">No Product Found</p>
     </ng-template>
   </ng-template>
-  <div class="pagination">
+  <div *ngIf="totalProductCount && totalProductCount>pageSize" class="pagination">
     <button class="btn btn-success" (click)="onClickPrev()" [disabled]="pageNo<=1">Prev</button>
     <span class="mx-3">{{pageNo}}</span>
     <button class="btn btn-success" (click)="onClickNext()" [disabled]="(this.pageNo * this.pageSize)>=this.totalProductCount">Next</button>

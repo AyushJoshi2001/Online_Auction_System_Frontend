@@ -17,7 +17,12 @@ export class HomeComponent implements OnInit {
   searchBy: string = "title";
   pageNo: number = 1;
   pageSize: number = 2;
-  totalProductCount: any = 0;
+  totalProductCount: any = 0;  
+  color: any[] = [
+    "#b9d1e9",
+    "#8fc79b",
+    "#a99dc4"
+  ];
 
   constructor(private productService: ProductService, private router: Router) {
   }

@@ -11,8 +11,8 @@ import { ProductService } from 'src/app/service/product/product.service';
   styleUrls: ['./product-with-operation.component.css']
 })
 export class ProductWithOperationComponent implements OnInit {
-  @Input()
-  product!: Product;
+  @Input() product!: Product;
+  @Input() bgColor: any;
   loggedInUser: User | null = null;
   bidClosed: boolean = false;
   hover: boolean = false;

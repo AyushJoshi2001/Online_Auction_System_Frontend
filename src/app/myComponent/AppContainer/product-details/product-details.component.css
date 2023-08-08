@@ -13,6 +13,7 @@
   justify-content: center;
   /* width: 100%; */
   padding-right: 50px;
+  color: #FFFFFF;
 }
 
 .inner_main {
@@ -22,6 +23,7 @@
   background-color: white;
   border-radius: 20px;
   padding: 20px;
+  background-color: #212529;
 }
 
 .product_pic {

@@ -30,6 +30,8 @@ import { AdminHomeComponent } from './myComponent/admin/admin-home/admin-home.co
 import { CookieService } from 'ngx-cookie-service';
 import { RegisterComponent } from './myComponent/AuthContainer/register/register.component';
 import { LoginComponent } from './myComponent/AuthContainer/login/login.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -61,7 +63,9 @@ import { LoginComponent } from './myComponent/AuthContainer/login/login.componen
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MatCardModule
   ],
   providers: [
     AuthService,

@@ -1,36 +1,36 @@
-<div class="mb-3 main" (mouseover)="hover = true" (mouseleave)="hover = false"
-  [ngClass]="{ divColor: bidClosed, mainHover: hover && !bidClosed }">
-  <div class="box">
-    <div class="imgBox" *ngIf="product.product_pic; else changeProductPic">
-      <img [src]="product.product_pic" alt="..." />
-    </div>
-    <ng-template #changeProductPic>
-      <div class="imgBox">
-        <img src="../../../assets/img/dummy-product.png" alt="..." />
+<mat-card class="mb-3 main" [ngStyle]="{'background-color': bgColor}">
+  <div *ngIf="bidClosed" class="overlay">
+    <p class="rot-text">Bid Ended</p>
+  </div>
+    <div class="box">
+      <div class="imgBox" *ngIf="product.product_pic; else changeProductPic">
+        <img [src]="product.product_pic" alt="..." />
       </div>
-    </ng-template>
+      <ng-template #changeProductPic>
+        <div class="imgBox">
+          <img src="../../../assets/img/dummy-product.png" alt="..." />
+        </div>
+      </ng-template>
 
-    <div class="content">
-      <p class="headText">
-        Title : <span>{{ product.title }}</span>
-      </p>
-      <p class="headText">
-        Description : <span>{{ product.description }}</span>
-      </p>
-      <p class="headText">
-        Time Left : <span>{{ timeLeft }} minutes</span>
-      </p>
-      <!-- <p class="headText">
+      <div class="content">
+        <p class="size-3 elipsis">{{ product.title | titlecase }}</p>
+        <p class="headText elipsis">
+          Description : <span>{{ product.description }}</span>
+        </p>
+        <p class="headText">
+          Time Left : <span>{{ timeLeft }} minutes</span>
+        </p>
+        <!-- <p class="headText">
         Bidding Status : <span>{{ product.bid_status }}</span>
       </p> -->
-      <p class="headText">
-        Base Price : <span>{{ product.base_price }}</span>
-      </p>
+        <p class="headText">
+          Base Price : <span>{{ product.base_price }}</span>
+        </p>
+        <div class="d-flex align-items-center">
+          <button class="btn btn-primary" (click)="clickedOnProduct()">
+            Click for Details & Bid
+          </button>
+      </div>
     </div>
-    <div class="d-flex align-items-center">
-      <button class="btn btn-primary" (click)="clickedOnProduct()">
-        Click for Details & Bid
-      </button>
     </div>
-  </div>
-</div>
+</mat-card>
